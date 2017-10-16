@@ -1,3 +1,6 @@
+#ifndef _NETWORK_HPP_
+#define _NETWORK_HPP_
+
 #include <iostream>
 using namespace std;
 #include "neuron.hpp"
@@ -15,9 +18,13 @@ class Network
 	
 	void update(int simTime);
 	
+	vector<Neuron*> getNeurons() const;
+	
 	
 	private:
 	vector<Neuron*> neurons;
 	vector<vector<int> > connexions;
 	
 };
+
+#endif
