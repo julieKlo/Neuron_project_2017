@@ -8,9 +8,10 @@
 	 neurons.push_back(new Neuron(n1));
 	 neurons.push_back(new Neuron(n2));
 	 
-	 connexions=vector<vector<int> >({{0,0},{1,0}}); //1er neurone n'est pas connecté au 1er 
- }											   		 //mais au 2e et 2e connecté à rien
-
+	 connexions=vector<vector<int> >({{0,1},{0,0}}); //n1 connecté à n2 
+ }											   		 //    n1  n2
+													 // n1 0   1
+													 // n2 0   0
 
  Network::~Network() 
  {
@@ -33,8 +34,6 @@
 		for(int i(0); i<neurons.size();i++) //j'update chaque neurone du tableau
 		{
 			neurons[i]->update_state(dt, curr_elec, simTime);
-			//cout<<"j'ai lu un neurone"<<endl;
-			cout<<"n"<<i+1<<" "<<neurons[i]->getPotMemb()<<endl;
 			
 			for(int j(0);j<connexions[i].size();j++) //je regarde si la connexion à un autre neurone existe
 			{
@@ -42,7 +41,7 @@
 			  { if(connexions[i][j]!=0)
 				{
 				 neurons[i]->emit_signal(neurons[j]); //si mon neurone i est connecté et a emis un spike
-				 cout<<"j'ai lu une connexion;"<<endl;
+				 cout<<"j'ai lu une connexion de n"<<i+1<<" a n"<<j+1<<endl;
 				 
 				}									  //je lui fait emettre un signal à son neurone connecté
 			  }

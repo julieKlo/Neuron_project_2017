@@ -48,7 +48,7 @@ class Neuron
 	 vector<double> times; //times when spikes occur
 	 bool spike; //se met à true lors de l'emission d'un spike
 	 bool canSpike; //capaciter du neurone a spiker de lui-même ou seulement
-					//recevoir un signal (si false9
+					//recevoir un signal (si false)
 	//temps
 	 double tau; //intervalle de temps
 	 int clock; //horloge du neurone

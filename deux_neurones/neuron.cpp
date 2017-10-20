@@ -58,13 +58,10 @@
 				{
 		         pot_memb=exp(-dt/tau)*pot_memb+curr_elec/c*(1-exp(-dt/tau)); //tau=r*c r=resistance
 		        }
-		       cout<<"pot memb= "<<getPotMemb()<<endl;
 		       pot_memb+=buffer_delay[clock%buffer_delay.size()];
-		       cout<<"pot memb+J= "<<getPotMemb()<<endl;
 		       buffer_delay[clock%buffer_delay.size()]=0;
 		    }
 		
-		   
 		   clock++;
 		   time++;
 		   

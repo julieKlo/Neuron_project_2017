@@ -14,13 +14,13 @@ int main()
 	
 	int t(tstart);
 	 ofstream sortie_pot_memb("membrane_pot.txt"); //ecriture sur le fichier texte
-	  //cout<<"t"<<endl;
+	 
 	while(t<tstop)
 	{
 	t++;
 	N.update(t);
-	//cout<<"updated"<<endl;
-	cout<<N.getNeurons()[0]->getPotMemb()<<endl;
+	cout<<"n1 "<<N.getNeurons()[0]->getPotMemb()<<endl;
+	cout<<"n2 "<<N.getNeurons()[1]->getPotMemb()<<endl;
 	sortie_pot_memb<<N.getNeurons()[0]->getPotMemb()<<" dont spike a "<<N.getNeurons()[0]->getTback()<<" ms et n2: "<<N.getNeurons()[1]->getPotMemb()<<" dont spike a "<<N.getNeurons()[1]->getTback()<<endl;
 	cout<<t<<endl;
 	}
