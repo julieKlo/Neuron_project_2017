@@ -9,7 +9,7 @@
 	 neurons.push_back(new Neuron(n2));
 	 
 	 connexions=vector<vector<int> >({{0,0},{1,0}}); //1er neurone n'est pas connecté au 1er 
- }											   //mais au 2e et 2e connecté à rien
+ }											   		 //mais au 2e et 2e connecté à rien
 
 
  Network::~Network() 
@@ -42,9 +42,9 @@
 			  { if(connexions[i][j]!=0)
 				{
 				 neurons[i]->emit_signal(neurons[j]); //si mon neurone i est connecté et a emis un spike
-				 //cout<<"j'ai lu une connexion;"<<endl;
+				 cout<<"j'ai lu une connexion;"<<endl;
 				 
-				}									  //je lui fait emettre un signal à son neurone conncté
+				}									  //je lui fait emettre un signal à son neurone connecté
 			  }
 		    }
 		    

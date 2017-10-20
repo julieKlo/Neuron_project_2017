@@ -27,12 +27,14 @@ class Neuron
 	 vector<double> getTimes() const;
 	 double getTback() const;
 	 bool getSpike() const;
+	 bool getCanSpike() const;
 	 
 	 //setters
 	 void setPotMemb(double p);
 	 void setNbSpikes(int n);
 	 void setTimes(vector<double> t);
 	 void setSpike(bool s);
+	 void setCanSpike(bool c);
 
 	
 	private:
@@ -45,7 +47,8 @@ class Neuron
 	 int nb_spikes; //number of spikes
 	 vector<double> times; //times when spikes occur
 	 bool spike; //se met à true lors de l'emission d'un spike
-	 
+	 bool canSpike; //capaciter du neurone a spiker de lui-même ou seulement
+					//recevoir un signal (si false9
 	//temps
 	 double tau; //intervalle de temps
 	 int clock; //horloge du neurone

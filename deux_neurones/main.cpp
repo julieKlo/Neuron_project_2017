@@ -9,11 +9,12 @@ int main()
 {
 	Neuron n1;
 	Neuron n2;
+	n2.setCanSpike(false); //n2 ne peut que recevoir
 	Network N(n1,n2);
 	
 	int t(tstart);
 	 ofstream sortie_pot_memb("membrane_pot.txt"); //ecriture sur le fichier texte
-	  cout<<"t"<<endl;
+	  //cout<<"t"<<endl;
 	while(t<tstop)
 	{
 	t++;
