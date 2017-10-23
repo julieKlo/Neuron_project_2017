@@ -33,7 +33,7 @@
 	{
 		for(int i(0); i<neurons.size();i++) //j'update chaque neurone du tableau
 		{
-			neurons[i]->update_state(dt, curr_elec, simTime);
+			neurons[i]->update_state(dt, simTime);
 			
 			for(int j(0);j<connexions[i].size();j++) //je regarde si la connexion à un autre neurone existe
 			{

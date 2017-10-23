@@ -4,13 +4,13 @@
 
 
  /////////////////Constructeurs et destructeur
-	 Neuron::Neuron(): tau(10), pot_memb(-70), c(250), nb_spikes(0), times(vector<double>(1,0)), clock(0), canSpike(true), t_refract(4), time(0), spike(false)
+	 Neuron::Neuron(): tau(10), pot_memb(-70), curr_elec(1.0), c(250), nb_spikes(0), times(vector<double>(1,0)), clock(0), canSpike(true), t_refract(4), time(0), spike(false)
 	 {
 	   for(auto& d:buffer_delay) {d=0;}	 
 	 }
 	 
 	 
-	 Neuron::Neuron(double pm,int ns, vector<double> t): tau(10), canSpike(true), c(250), pot_memb(pm), nb_spikes(ns), times(t), clock(0), t_refract(4), time(0), spike(false)
+	 Neuron::Neuron(double pm,int ns, vector<double> t): tau(10), curr_elec(1.0), canSpike(true), c(250), pot_memb(pm), nb_spikes(ns), times(t), clock(0), t_refract(4), time(0), spike(false)
 	 {
 	   for(auto& d:buffer_delay) {d=0;}	 
 	 }
@@ -32,7 +32,7 @@
 	 } 
 	 
 	 
-	 void Neuron::update_state (double dt, double curr_elec, int simTime)
+	 void Neuron::update_state (double dt, int simTime)
 	 {
 		 maxPot=-56;
 		 setSpike(false);
@@ -78,6 +78,8 @@
 	 double Neuron::getTback() const {return times.back();}
 	 bool Neuron::getSpike() const {return spike;}
 	 bool Neuron::getCanSpike() const {return canSpike;}
+	 double Neuron::getCurrElec() const {return curr_elec;}
+	 int Neuron::getClock() const {return clock;}
 	 
 //////////////setters
 	 void Neuron::setPotMemb(double p) {pot_memb=p;}
@@ -85,5 +87,6 @@
 	 void Neuron::setTimes(vector<double> t) {times=t;}
 	 void Neuron:: setSpike(bool s){spike=s;}
 	 void Neuron:: setCanSpike(bool c) {canSpike=c;}
+	 void Neuron:: setCurrElec(double c) {curr_elec=c;}
 	 
 	 

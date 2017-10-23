@@ -18,7 +18,7 @@ class Neuron
 	 ~Neuron();
 	 
 	 //evolution du neurone
-	 void update_state (double dt, double curr_elec, int simTime);
+	 void update_state (double dt, int simTime);
 	 void emit_signal(Neuron* other);
 	 
 	 //getters
@@ -28,6 +28,8 @@ class Neuron
 	 double getTback() const;
 	 bool getSpike() const;
 	 bool getCanSpike() const;
+	 double getCurrElec() const;
+	 int getClock() const;
 	 
 	 //setters
 	 void setPotMemb(double p);
@@ -35,6 +37,7 @@ class Neuron
 	 void setTimes(vector<double> t);
 	 void setSpike(bool s);
 	 void setCanSpike(bool c);
+	 void setCurrElec(double c);
 
 	
 	private:
@@ -55,7 +58,7 @@ class Neuron
 	 int t_refract; //#steps necessaires
 	 int time;//horloge gerant la pause entre 2 spikes
 	 array<int,30> buffer_delay;//tableau de sockage pour reception du signal pré synaptique
-	
+	 double curr_elec; //courant electrique du neurone
 	 
 
 

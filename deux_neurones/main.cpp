@@ -17,8 +17,10 @@ int main()
 	 
 	while(t<tstop)
 	{
+		
 	t++;
 	N.update(t);
+	
 	cout<<"n1 "<<N.getNeurons()[0]->getPotMemb()<<endl;
 	cout<<"n2 "<<N.getNeurons()[1]->getPotMemb()<<endl;
 	sortie_pot_memb<<N.getNeurons()[0]->getPotMemb()<<" dont spike a "<<N.getNeurons()[0]->getTback()<<" ms et n2: "<<N.getNeurons()[1]->getPotMemb()<<" dont spike a "<<N.getNeurons()[1]->getTback()<<endl;
