@@ -13,9 +13,8 @@ class Neuron
 {
 	public:
 	//constructeurs destructeurs
-	 Neuron();
-	 Neuron(double pm,int ns, vector<double> t);
-	 ~Neuron();
+	 Neuron(); //!< Constructor of neuron
+	 ~Neuron();//!< Destructor of neuron
 	 
 	 //evolution du neurone
 	 void update_state (int simTime);
@@ -51,7 +50,6 @@ class Neuron
 	private:
 	//potentiels
 	 double pot_memb; //membrane potential
-	 double c; //capacité
 	 
 	//spikes
 	 int nb_spikes; //number of spikes
@@ -61,7 +59,6 @@ class Neuron
 					//recevoir un signal (si false)
 	 bool exc_inhib; //true=excitateur, false=inhibiteur
 	//temps
-	 double tau; //intervalle de temps
 	 int clock; //horloge du neurone
 	 int time;//horloge gerant la pause entre 2 spikes
 	 array<double,30> buffer_delay;//tableau de sockage pour reception du signal pré synaptique

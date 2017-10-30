@@ -7,6 +7,7 @@ TEST (NeuronTest, MembPotential)
 {
 	Neuron n;
 	n.setCurrElec(1.0);
+	n.setCanSpike(true);
 	
 	n.update_state(0);
 	
@@ -41,6 +42,10 @@ TEST (NeuronTest, NbSpikes)
 	EXPECT_NEAR(7,n.getNbSpikes(),3); //approximation car dépend de Cext
 	cout<<"			Right Number of Spikes generated"<<endl;
 	
+	EXPECT_EQ(false,n.getTimes().empty());
+	cout<<"		       Spike times have been stored and they are"<<endl;
+
+	
 }
 
 TEST (NeuronTest, ConnexionGeneration)
@@ -49,6 +54,7 @@ TEST (NeuronTest, ConnexionGeneration)
 	n1.connexions_fill(1);
 	EXPECT_EQ(conn_exc+conn_inh,n1.getNbConn());
 	cout<<"			Connections generated"<<endl;
+	
 }
 
 TEST (NetworkTest, ReceiveSignal)
@@ -80,14 +86,37 @@ TEST (NetworkTest, CreateNeurons)
 TEST (NetworkTest, EnvironmentAttitude)
 {
 	Network N;
+	EXPECT_EQ(nbNeuronExc+nbNeuronIn,N.getNeurons().size());
+	cout<<"		    Right number of neurons"<<endl;
+	
+	int exc(0);
+	int inh(0);
+	for(size_t t(0);t<N.getNeurons().size();++t)
+	{
+		if(N.getNeurons()[t]->getExcInhib()) {exc+=1;}
+		else{inh+=1;}
+	}
+	EXPECT_EQ(nbNeuronExc,exc);
+	cout<<"		    Right number of excitatory neurons"<<endl;
+	EXPECT_EQ(nbNeuronIn,inh);
+	cout<<"		    Right number of inhibitory neurons"<<endl;
+	
+	
 	int t(tstart);
-	while(t<=t_refract)
+	while(t<=t_refract+1)
 	{
 		N.update(t);
 		++t;
+		cout<<N.getNeurons()[0]->getPotMemb()<<endl;
 	}
-	EXPECT_EQ(true,N.getNeurons()[0]->getPotMemb()!=0);
-	cout<<"		  Neurons progress"<<endl;
+	for(size_t i(0);i<N.getNeurons().size();++i)
+	{
+	EXPECT_EQ(true,N.getNeurons()[i]->getPotMemb()!=0);
+	}
+	cout<<"		    All neurons evolve"<<endl;
+	
+	
+	
 }
 
 
