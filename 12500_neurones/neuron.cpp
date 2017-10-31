@@ -13,7 +13,7 @@
 	  * at the begining the neuron don't have any connections (created after) neither membrane potential (=0), it's excitatory by default, 
 	  * it hasn't spiked, and time=0 because it's in refractory phase and curr elec is 0 cause it cannot spike alone (also why canSpike=false)
 	  */
-	 Neuron::Neuron(): nbConn(0), exc_inhib(true), pot_memb(0), curr_elec(0),  nb_spikes(0), times(vector<double>(1,0)), clock(0), canSpike(false), time(0), spike(false)
+	 Neuron::Neuron(): nbConn(0), test(false), exc_inhib(true), pot_memb(0), curr_elec(0),  nb_spikes(0), times(vector<double>(1,0)), clock(0), canSpike(false), time(0), spike(false)
 	 {
 	   for(auto& d:buffer_delay) {d=0;}	 
 	   for(size_t t(0);t<12500;++t) {connexions.push_back(0);} //mon neurone va avoir 12500 connexion
@@ -133,7 +133,8 @@
 		       random_device randomDevice;
 		       mt19937 gen(randomDevice());
 		       poisson_distribution<> poissonGen(Vext*Jext*dt*Ce);
-		       pot_memb+=buffer_delay[clock%buffer_delay.size()]+ poissonGen(gen);//connexion stockée dans le buffer
+		       if(getTest()) {pot_memb+=buffer_delay[clock%buffer_delay.size()];}
+		       else {pot_memb+=buffer_delay[clock%buffer_delay.size()]+ poissonGen(gen);}//connexion stockée dans le buffer
 		       buffer_delay[clock%buffer_delay.size()]=0;										  			   //+courant aléatoire (poisson) de 
 		    }																					   			   //(Vext*J*dt*Ce)
 		
@@ -208,6 +209,12 @@
 	  */
 	 int Neuron:: getNbConn() const {return nbConn;}
 	 
+	  /*!
+	  * @brief getter of test
+	  * @return if we are testing or not 
+	  */
+	 bool Neuron:: getTest() const {return test;}
+	 
 //////////////setters
 	  /*!
 	  * @brief setter of Membrane Potential
@@ -254,4 +261,9 @@
 	  * @param  an int corresponding to the place where we're going to store the value b of the signal received
 	  */
 	 void Neuron:: setBufferDelay(int place, double b) {buffer_delay[place]=b;}
+	 /*!
+	  * @brief setter of test
+	  * @param  boolean corresponding to if we are testing something (in unitTest) or not
+	  */
+	 void Neuron:: setTest(bool b) {test=b;}
 	 

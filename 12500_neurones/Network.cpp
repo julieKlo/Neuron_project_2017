@@ -4,7 +4,9 @@
 
 //////////////////Constructeurs Destructeurs
 
-
+	  /*!
+	  * @brief Constructor of the Network 
+	  */
  Network::Network()
  {
    //création de mon tableau de neurones
@@ -26,6 +28,9 @@
   
  }
  
+	  /*!
+	  * @brief Constructor of the Network composed of 2 neurons to observe the connection between them
+	  */
  Network::Network(Neuron n1, Neuron n2)
  {
 	 neurons.push_back(new Neuron(n1));
@@ -34,7 +39,9 @@
 	 n2.setConnexions(vector<int>({1,0}));
  }					
 
- 
+	  /*!
+	  * @brief Destructor of Network (free the pointers) 
+	  */
  Network::~Network() 
  {
     for (auto& e : neurons)
@@ -50,7 +57,14 @@
 //////////////////Action sur les connexions
 
 
-	
+	  /*!
+	  * @brief update the Network at each step of time
+	  * @param an int corresponding to the simulation time
+	  * 
+	  * it updates each neuron of the Network one at a time
+	  * and them check the connections between each neuron to
+	  * send the signals if necessary 
+	  */
 	void Network:: update(int simTime)
 	{
 		for(size_t i(0); i<neurons.size();i++) //j'update chaque neurone du tableau
@@ -77,6 +91,10 @@
 
 //////////////////getters
 
+	  /*!
+	  * @brief getter of neurons of the Network
+	  * @return a vector of pointers over the neurons of the Network 
+	  */
 vector<Neuron*> Network::getNeurons() const
 {return neurons;}
 		
