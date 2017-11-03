@@ -2,15 +2,15 @@
 #include <random>
 
 
-//////////////////Constructeurs Destructeurs
+//////////////////Constructors & Destructor
 
 	  /*!
 	  * @brief Constructor of the Network 
+	  * We create a tab in wich we have excitatory and inhibitory neurons related by connections
 	  */
  Network::Network()
  {
-   //création de mon tableau de neurones
-	 for(int i(0); i<nbNeuronExc;++i) //je crée 10000 neurones excitateurs
+	 for(int i(0); i<nbNeuronExc;++i) 
 	  {
 	    neurons.push_back(new Neuron());
 	    neurons[i]->setExcInhib(true);
@@ -24,19 +24,20 @@
 		neurons[j]->connexions_fill(j);
 	  }
 	  
-	  //cout<<"#neurones: "<<neurons.size()<<endl;
+	  cout<<"#constructed neurons : "<<neurons.size()<<endl;
   
  }
  
 	  /*!
 	  * @brief Constructor of the Network composed of 2 neurons to observe the connection between them
+	  * We create two excitatory neuron related by a connection from the first to the second
 	  */
- Network::Network(Neuron n1, Neuron n2)
+ Network::Network(Neuron* n1, Neuron* n2)
  {
-	 neurons.push_back(new Neuron(n1));
-	 neurons.push_back(new Neuron(n2));
-	 n1.setConnexions(vector<int>({0,1}));
-	 n2.setConnexions(vector<int>({1,0}));
+	 neurons.push_back(n1);
+	 neurons.push_back(n2);
+	 neurons[0]->setEfficientConnections(vector<int>({1}));
+	 neurons[1]->setEfficientConnections(vector<int>({}));
  }					
 
 	  /*!
@@ -54,7 +55,7 @@
  
  
 
-//////////////////Action sur les connexions
+//////////////////Action on Network
 
 
 	  /*!
@@ -62,30 +63,25 @@
 	  * @param an int corresponding to the simulation time
 	  * 
 	  * it updates each neuron of the Network one at a time
-	  * and them check the connections between each neuron to
-	  * send the signals if necessary 
+	  * and send the signals if necessary (with method emit_signal)
 	  */
 	void Network:: update(int simTime)
 	{
-		for(size_t i(0); i<neurons.size();i++) //j'update chaque neurone du tableau
+		for(size_t i(0); i<neurons.size();i++)
 		{
 			neurons[i]->update_state(simTime);
 			
-			for(size_t j(0);j<(neurons[i]->getConnexions().size());j++) //je regarde si la connexion à un autre neurone existe
+			for(size_t j(0);j<(neurons[i]->getEfficientConnections().size());j++) 
 			{
-			   if(neurons[i]->getConnexions()[j]!=0)
-				{
-				 neurons[i]->emit_signal(neurons[j],neurons[i]->getConnexions()[j]);       //si mon neurone i est connecté et a emis un spike
-				 //cout<<"j'ai lu une connexion de n"<<i+1<<" a n"<<j+1<<endl;  		   //je lui fait emettre autant de signaux qu'il 
-																						   //y a de connexions d'un neurone vers l'autre
-				}									  
+				 neurons[i]->emit_signal(neurons[neurons[i]->getEfficientConnections()[j]]);
+			}									  
 			  
-		    }
-		    
 		}
-			
-			
+		    
 	}
+			
+			
+	
 		
 		
 

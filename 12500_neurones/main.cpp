@@ -3,26 +3,17 @@ using namespace std;
 #include "neuron.hpp"
 #include "Constants.hpp"
 #include "Network.hpp"
+#include "Simulation.hpp"
 #include <fstream>
 
 int main()
 {
-	Network Net;
-	
-	int t(tstart);
-	 //ofstream sortie_pot_memb("membrane_pot.txt"); //ecriture sur le fichier texte
-	 
-	while(t<tstop)
-	{
-	cout<<t<<endl;
-	t++;
-	Net.update(t);
-	
-	//sortie_pot_memb<<N.getNeurons()[0]->getPotMemb()<<" dont spike a "<<N.getNeurons()[0]->getTback()<<" ms et n2: "<<N.getNeurons()[1]->getPotMemb()<<" dont spike a "<<N.getNeurons()[1]->getTback()<<endl;
-	cout<<t<<endl;
-	}
-	 //sortie_pot_memb.close();
-
+   int n;
+   cout<<"Choose Simulation between : ONE_NEURON, TWO_NEURONS or NETWORK (write 1,2 or 3):"<<endl;
+   while((n>3) or (n<1))
+   {cin>>n;}
+   Simulation S(n);
+   
 	return 0;
 }
 

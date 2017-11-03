@@ -12,7 +12,7 @@ class Network
 {
 	public:
 	
-	Network(Neuron n1, Neuron n2); //!< Constructor to simulate the connection between 2 neurons
+	Network(Neuron* n1, Neuron* n2); //!< Constructor to simulate the connection between 2 neurons */
 	Network(); //!< Constructor of a Network whose number of neurons are in file Constants.hpp
 	~Network(); //!< Destructor that free the pointers
 	

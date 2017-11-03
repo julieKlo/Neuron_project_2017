@@ -17,11 +17,11 @@ const double Jext=0.1; //!< J (amplitude) received by outside
 const double Je=0.1; //!< amplitude of the excitatory transmitted signal
 const double Ji=-0.5; //!< amplitude of the inhibitory transmitted signal
 const int D=15; //!< delay time before the reception of the signal
-const int conn_exc=10; //!< number of excitatory connections
-const int conn_inh=3; //!< number of inhibitory connections
-const int nbNeuronExc=100; //!< number of excitatory neurons
-const int nbNeuronIn=25; //!< number of inhibitory neurons
-const int t_refract=2; //!< number of steps between 2 spikes
+const int conn_exc=100; //!< number of excitatory connections
+const int conn_inh=25; //!< number of inhibitory connections
+const int nbNeuronExc=1000; //!< number of excitatory neurons
+const int nbNeuronIn=250; //!< number of inhibitory neurons
+const int t_refract=4; //!< number of steps between 2 spikes
 const double Vext=0.02; //!< extern potential (warning: if changed, test for number of spikes doesn't work cause poisson generation varies)
 const int Ce=1000; //!< extern capacity
 
