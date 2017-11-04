@@ -10,8 +10,9 @@
      /*!
 	  * @brief Constructor of neuron 
 	  * 
-	  * at the begining the neuron don't have any connections (created after) neither membrane potential (=0), it's excitatory by default, 
-	  * it hasn't spiked, and time=0 because it's in refractory phase and curr elec is 0 cause it cannot spike alone
+	  * At the begining the neuron doesn't have any connections (created after) neither membrane 
+	  * potential (=0), it's excitatory by default, it hasn't spiked, and time=0 because it's in 
+	  * refractory phase and curr elec is 0 .
 	  */
 	 Neuron::Neuron(): nbConn(0), test(false), exc_inhib(true), pot_memb(0), curr_elec(0),  nb_spikes(0), times(vector<double>(1,0)), clock(0), time(0), spike(false)
 	 {
@@ -34,7 +35,7 @@
 	  * @param the neuron that will receive the signal
 	  * 
 	  * when the neuron has spiked, it sends a signal to the neurons it's connected to
-	  * with an amplitude Je (if excitatory) and Ji (if inhibitory) 
+	  * with an amplitude Je (if excitatory) and Ji (if inhibitory). 
 	  */
 	 void Neuron::emit_signal(Neuron* other)
 	 {
@@ -47,7 +48,7 @@
 																	 //la valeur de J (e ou i suivant excitateur ou inhibiteur)
 			 else
 	         {
-				 other->setBufferDelay((clock+D)%(buffer_delay.size()),Ji);
+				 other->setBufferDelay((clock+D)%(buffer_delay.size()),Ji-0.1);
 			 }
 
 		 }														     
@@ -60,11 +61,11 @@
 	  * 
 	  * While we don't have as many excitatory (respectively inhibitory) connections as expected, 
 	  * we create randomly connections by generating a number belowing to the number of excitatory 
-	  * (respectively inhibitory) neurons
+	  * (respectively inhibitory) neurons.
 	  * In the square of the neuron corresponding to the random number we add 1 to show that 1 more connection
-	  * between the 2 neurons exists
+	  * between the 2 neurons exists.
 	  * Then we sort this tab to optimize the signal transmission in the simulation (allows to cross the tab
-	  * faster by creating a new tab with positive connections)
+	  * faster by creating a new tab with positive connections).
 	  */
 	 void Neuron::connexions_fill(int num_neuron) 
 	 {											  
@@ -111,8 +112,8 @@
 	  * @param an int corresponding to the simulation time
 	  * 
 	  * I check if my neuron emits a spike (when membrane potential exceeds maximum membrane potential 
-	  * (Vthershold))
-	  * Then while it's refracting the membrane potential remains at 0
+	  * (Vthershold)).
+	  * Then while it's refracting the membrane potential remains at 0.
 	  * 
 	  */
 	 void Neuron::update_state (int simTime)
@@ -136,7 +137,7 @@
 	 * 
 	  * the neuron spiked so my membrane potential turns
 	  * back to 0, I add a spike time to the vector times, my time of refractory break turns back to t_refract
-	  * the neuron emits a spike (setSpike->true) and I add 1 to my total number of spikes
+	  * the neuron emits a spike (setSpike->true) and I add 1 to my total number of spikes.
 	 */
 	void Neuron::spike_emission(int simTime)
 	{
@@ -151,9 +152,10 @@
 	 /*!
 	 * @brief it computes the membrane potential according to the specificity of neuron (if it's tested (has its own potential) or normal)
 	 * 
-	 * If it can spike alone it increases according to an input electric current curr_elec
+	 * If it can spike alone it increases its membrane potential according to an input electric current curr_elec.
 	 * I add the poisson generation that corresponds to the connections that comes from the external neurons
-	 * and the contents of the buffer (that corresponds to the reception of a signal received with delay D)
+	 * (only if I'm not testing because it's difficult to test values with random generation)
+	 * and the contents of the buffer (that corresponds to the reception of a signal received with delay D).
 	 */	 
 	 void Neuron::V_compute()
 	 {

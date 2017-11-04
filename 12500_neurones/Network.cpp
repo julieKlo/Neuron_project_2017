@@ -28,9 +28,11 @@
   
  }
  
+
+ 
 	  /*!
 	  * @brief Constructor of the Network composed of 2 neurons to observe the connection between them
-	  * We create two excitatory neuron related by a connection from the first to the second
+	  * We create two excitatory neurons related by a connection from the first to the second
 	  */
  Network::Network(Neuron* n1, Neuron* n2)
  {

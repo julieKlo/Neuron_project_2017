@@ -6,7 +6,7 @@
  * @brief Consrtuct a simulatin according to n, an int chosen by the user on the terminal
  * @param n, an int corresponding to the user's choice
  * The main ask for a type of simulation and the user choose by entering an int 
- * (1=ONE_NEURON,2=TWO_NEURONS,3=NETWORK)
+ * (1=ONE_NEURON,2=TWO_NEURONS,3=NETWORK).
  */ 
 Simulation::Simulation(int n)
 {
@@ -21,7 +21,7 @@ Simulation::Simulation(int n)
 /*!
  * @brief simulate one neuron's behaviour
  * It creates a Neuron which generates its own current so that it increases its
- * own potential and spikes regularly
+ * own potential and spikes regularly.
  */ 
 void Simulation:: simulate_one_neuron()
 {
