@@ -17,7 +17,7 @@
 	    neurons[i]->connexions_fill(i);
 	  }
 	  
-	 for(int j(nbNeuronExc); j<(nbNeuronExc+nbNeuronIn);++j) //je crée 2500 neurones inhibiteurs
+	 for(int j(nbNeuronExc); j<(nbNeuronExc+nbNeuronIn);++j) 
 	  {
 		neurons.push_back(new Neuron());
 		neurons[j]->setExcInhib(false);
@@ -87,7 +87,7 @@
 		
 		
 
-//////////////////getters
+//////////////////getter
 
 	  /*!
 	  * @brief getter of neurons of the Network

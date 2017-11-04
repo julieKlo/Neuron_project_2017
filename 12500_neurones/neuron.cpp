@@ -6,7 +6,7 @@
 
 
 
- /////////////////Constructeurs et destructeur
+ /////////////////Constructor and destructor
      /*!
 	  * @brief Constructor of neuron 
 	  * 
@@ -28,7 +28,7 @@
 
 	 
 	 
- ////////////////Evolution du neurone	 
+ ////////////////Neuron evolution	 
  
 	 /*!
 	  * @brief allows a neuron that spiked to send a signal to another neuron
@@ -44,8 +44,7 @@
 			 if(exc_inhib)
 			 {
 				 other->setBufferDelay((clock+D)%(buffer_delay.size()),Je);
-			 }														 //la case associée à la future reception de spike prend 
-																	 //la valeur de J (e ou i suivant excitateur ou inhibiteur)
+			 }														 													 
 			 else
 	         {
 				 other->setBufferDelay((clock+D)%(buffer_delay.size()),Ji-0.1);
@@ -76,7 +75,7 @@
 	  
 	    while(i<conn_exc) 
 	     {
-		   uniform_int_distribution<int> d(0,nbNeuronExc); 
+		   static uniform_int_distribution<int> d(0,nbNeuronExc); 
 		   if(d(gen)!=num_neuron) //the neuron can't connect to itself
 		    {
 			 connexions[d(gen)]+=1;
@@ -87,7 +86,7 @@
 	    
 	    while(j<conn_inh)
 	      {
-		     uniform_int_distribution<int> e(nbNeuronExc+1,nbNeuronExc+nbNeuronIn); //mes 10000 premiers neurones sont excitateurs
+		     static uniform_int_distribution<int> e(nbNeuronExc+1,nbNeuronExc+nbNeuronIn); //mes 10000 premiers neurones sont excitateurs
 		
 		     if(e(gen)!=num_neuron) //the neuron can't connect to itself
 		      {
@@ -122,7 +121,11 @@
 		 
 		   if(pot_memb>maxPot) {spike_emission(simTime);}
 		   
-		   if(time<t_refract) {pot_memb=0.0;}
+		   if(time<t_refract) 
+		   {
+			   pot_memb=0.0;
+			   buffer_delay[clock%buffer_delay.size()]=0;
+		   }
 			
 		   else {V_compute();}																				   			   
 		
@@ -159,16 +162,16 @@
 	 */	 
 	 void Neuron::V_compute()
 	 {
-		 if(getTest()) //si le neurone peut spiker (et pas seulement recevoir un signal)
+		 if(getTest()) 
 			{
 		     pot_memb=exp(-dt/tau)*pot_memb+curr_elec/C*(1-exp(-dt/tau))+buffer_delay[clock%buffer_delay.size()]; //tau=r*c r=resistance
 		    }
 		 
 		 else 
 		    {
-			  random_device randomDevice;
-		      mt19937 gen(randomDevice());
-		      poisson_distribution<> poissonGen(Vext*Jext*dt*Ce);
+			  static random_device randomDevice;
+		      static mt19937 gen(randomDevice());
+		      static poisson_distribution<> poissonGen(Vext*Jext*dt*Ce);
 		      pot_memb+=(buffer_delay[clock%buffer_delay.size()]+ poissonGen(gen));
 		    }
 				

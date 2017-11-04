@@ -9,7 +9,7 @@
 #include <fstream>
 
 using namespace std;
-enum SIMULATION_TYPE {ONE_NEURON,TWO_NEURONS,NETWORK};
+enum SIMULATION_TYPE {ONE_NEURON,TWO_NEURONS,NETWORK,OTHER};
 
 class Simulation 
  {
@@ -20,6 +20,7 @@ class Simulation
 	  void simulate_one_neuron(); //!< simulation of one neuron
 	  void simulate_two_neurons(); //!< simulation os 2 neurons
 	  void simulate_Network(); //!< simulation of a complete Network
+	  SIMULATION_TYPE choose_simulation(); //!< allows to choose what we're going to simulate
 	  
  };
 

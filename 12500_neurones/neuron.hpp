@@ -12,11 +12,11 @@ using namespace std;
 class Neuron 
 {
 	public:
-	//constructeurs destructeurs
+	//constructor destructor
 	 Neuron(); //!< Constructor of neuron
 	 ~Neuron();//!< Destructor of neuron
 	 
-	 //evolution du neurone
+	 //neuron evolution
 	 void update_state (int simTime); //!< Update the neuron at each step of time
 	 void emit_signal(Neuron* other); //!< Allows a neuron to emit a signal toward its connections once it spiked
 	 void connexions_fill(int num_neuron); //!< create connections randomly from the neuron toward other neurons through indexes (int)
@@ -53,7 +53,7 @@ class Neuron
 	 void setEfficientConnections(vector<int> v);
 	
 	private:
-	//potentiels
+	//potentials
 	 double pot_memb; //!< membrane potential of the neuron
 	 
 	//spikes
@@ -61,13 +61,14 @@ class Neuron
 	 vector<double> times; //!< times when spikes occur
 	 bool spike; //!< becomes true when the neuron spikes (->can emit a signal)
 	 bool exc_inhib; //!< true=excitatory and false=inhibitory
-	//temps
+	 
+	//time
 	 int clock; //!< clock of the neuron
 	 int time; //!< counter for the break between 2 spikes
 	 array<double,16> buffer_delay; //!< stores the pre-synaptic signals the neuron will receive with a delay D
 	 double curr_elec; //!< electric current 
 	 
-	//connexions
+	//connections
 	 vector<int> connexions; //!< vector of index corresponding to the neurons this one is connected to
 	 int nbConn; //!< number of connections the neuron has
 	 bool test; //!< true if we're testing, false else
@@ -78,10 +79,6 @@ class Neuron
 };
 
 
- //  C=250 pF
- // Tau=10 mS
- // Tau ref= 2 mS
- // Vreset= -70mV => après un spike
- // dt= 0.1 mS
+
  
  #endif

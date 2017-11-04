@@ -56,7 +56,7 @@ TEST (NeuronTest, NbSpikes)
 		n.update_state(t);
 		++t;
 	}
-	EXPECT_EQ(4,n.getNbSpikes()); //approximation car dépend de Cext
+	EXPECT_EQ(4,n.getNbSpikes()); 
 	cout<<"			Right Number of Spikes generated"<<endl;
 	
 	EXPECT_EQ(false,n.getTimes().empty());
