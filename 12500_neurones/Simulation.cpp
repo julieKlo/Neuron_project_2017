@@ -4,7 +4,7 @@
 
 /*!
  * @brief Consrtuct a simulatin according to n, an int chosen by the user on the terminal
- * @param n, an int corresponding to the user's choice
+ * @param n, an int (equivalent to a SIMULATION_TYPE) corresponding to the user's choice
  * The user enters a string which is converted into a SIMULATION_TYPE and the simulation
  * is started according to this one 
  * (ONE_NEURON,TWO_NEURONS,NETWORK).
@@ -114,6 +114,5 @@ SIMULATION_TYPE Simulation:: choose_simulation()
    else
    {return OTHER;}
 }
-
 
 

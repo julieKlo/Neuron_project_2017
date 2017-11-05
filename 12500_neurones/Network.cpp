@@ -95,7 +95,7 @@
 	  */
 vector<Neuron*> Network::getNeurons() const
 {return neurons;}
-		
+
 	
 	
 	

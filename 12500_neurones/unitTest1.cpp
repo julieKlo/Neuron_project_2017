@@ -90,9 +90,12 @@ TEST (NetworkTest, ReceiveSignal)
 	EXPECT_EQ(Je,N.getNeurons()[1]->getBufferDelay()[D]);
 	cout<<"			Excitatory signal generated from one neuron to the other"<<endl;
 	
+
 	N.getNeurons()[1]->setBufferDelay(D,0);
-	N.getNeurons()[0]->setSpike(true);
 	N.getNeurons()[0]->setExcInhib(false);
+	N.getNeurons()[0]->setJconnect(Ji-0.1);
+	N.getNeurons()[0]->setSpike(true);
+	cout<<"Jconnect "<<N.getNeurons()[0]->getJconnect()<<endl;
 	N.getNeurons()[0]->emit_signal(N.getNeurons()[1]);
 	EXPECT_EQ(Ji,N.getNeurons()[1]->getBufferDelay()[D]);
 	cout<<"			Inhibitory signal generated from one neuron to the other"<<endl;

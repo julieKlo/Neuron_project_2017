@@ -21,7 +21,7 @@ const int conn_exc=100; //!< number of excitatory connections
 const int conn_inh=25; //!< number of inhibitory connections
 const int nbNeuronExc=1000; //!< number of excitatory neurons
 const int nbNeuronIn=250; //!< number of inhibitory neurons
-const int t_refract=2; //!< number of steps between 2 spikes
+const int t_refract=20; //!< number of steps between 2 spikes
 const double Vext=0.02; //!< extern potential (warning: if changed, test for number of spikes doesn't work cause poisson generation varies)
 const int Ce=1000; //!< extern capacity
 

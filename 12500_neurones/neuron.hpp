@@ -39,6 +39,7 @@ class Neuron
 	 int getNbConn() const; //!< return the number of connections of the neuron
 	 bool getTest() const; //!< return if we are testing something (true) or just using it in the main
 	 vector<int> getEfficientConnections() const;
+	 double getJconnect() const;
 	 
 	 //setters
 	 void setPotMemb(double p); //!< set the membrane potential
@@ -51,6 +52,7 @@ class Neuron
 	 void setBufferDelay(int place, double b); //!< set a square of the buffer
 	 void setTest(bool b); //!< set if we are testing something or just using it in the main
 	 void setEfficientConnections(vector<int> v);
+	 void setJconnect(double j);
 	
 	private:
 	//potentials
@@ -64,9 +66,9 @@ class Neuron
 	 
 	//time
 	 int clock; //!< clock of the neuron
-	 int time; //!< counter for the break between 2 spikes
 	 array<double,16> buffer_delay; //!< stores the pre-synaptic signals the neuron will receive with a delay D
 	 double curr_elec; //!< electric current 
+	 bool isRefractory(int simTime) const; //!< tests if neuron in refractory time
 	 
 	//connections
 	 vector<int> connexions; //!< vector of index corresponding to the neurons this one is connected to
@@ -74,6 +76,7 @@ class Neuron
 	 bool test; //!< true if we're testing, false else
 	 vector<int> efficient_connections; //!< vector of neurons this is connected to
 
+	double j_connection; //!< potential received from connected neurons
 
 	 
 };
@@ -81,4 +84,4 @@ class Neuron
 
 
  
- #endif
+#endif

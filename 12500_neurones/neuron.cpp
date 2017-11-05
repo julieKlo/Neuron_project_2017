@@ -1,4 +1,5 @@
 #include "neuron.hpp"
+#include "neuron.hpp"
 #include "Constants.hpp"
 #include <fstream>
 #include <iomanip>
@@ -14,13 +15,18 @@
 	  * potential (=0), it's excitatory by default, it hasn't spiked, and time=0 because it's in 
 	  * refractory phase and curr elec is 0 .
 	  */
-	 Neuron::Neuron(): nbConn(0), test(false), exc_inhib(true), pot_memb(0), curr_elec(0),  nb_spikes(0), times(vector<double>(1,0)), clock(0), time(0), spike(false)
+	 Neuron::Neuron(): nbConn(0), test(false), exc_inhib(true), pot_memb(0), curr_elec(0),  nb_spikes(0), times(vector<double>(1,0)), clock(0),  spike(false)
 	 {
 	   for(auto& d:buffer_delay) {d=0;}	 
-	   for(size_t t(0);t<nbNeuronExc+nbNeuronIn;++t) {connexions.push_back(0);} //mon neurone va avoir 12500 connexion
+	   for(size_t t(0);t<nbNeuronExc+nbNeuronIn;++t) {connexions.push_back(0);} 
 	   
-     }
- 
+	   if(exc_inhib){
+		   j_connection = Je;
+	   } 
+	   else {j_connection = Ji-0.1;} //j_connection takes the value according to the type of the neuron (exc or inh)
+
+	   
+	}
 	 /*!
 	  * @brief Destructor of neuron
 	  */
@@ -41,15 +47,8 @@
 	 {
 		 if(getSpike())
 		 {
-			 if(exc_inhib)
-			 {
-				 other->setBufferDelay((clock+D)%(buffer_delay.size()),Je);
-			 }														 													 
-			 else
-	         {
-				 other->setBufferDelay((clock+D)%(buffer_delay.size()),Ji-0.1);
-			 }
-
+			 other->setBufferDelay((clock+D)%(buffer_delay.size()),j_connection);													 			
+			
 		 }														     
 		 
 	 } 
@@ -117,23 +116,27 @@
 	  */
 	 void Neuron::update_state (int simTime)
 	 {
-		 setSpike(false);
-		 
-		   if(pot_memb>maxPot) {spike_emission(simTime);}
+		setSpike(false);
+		if(pot_memb>maxPot) {spike_emission(simTime);}
 		   
-		   if(time<t_refract) 
+		   if(isRefractory(simTime))
 		   {
 			   pot_memb=0.0;
-			   buffer_delay[clock%buffer_delay.size()]=0;
 		   }
 			
 		   else {V_compute();}																				   			   
-		
+			buffer_delay[clock%buffer_delay.size()]=0;
 		   clock++;
-		   time++;
 	 }
 	 
-	 
+	 /*!
+	  * @brief allows to see if the neuron is refractory 
+	  * @param the simulation time to ""compute" the last time the neuron spiked
+	  */ 
+	 bool Neuron::isRefractory(int simTime) const
+	{
+		return (!((times.empty()) or (simTime > (times.back() + t_refract))));
+	}
 		 
 	/*!
 	 *@brief treats the membrane potential during a spike emission
@@ -146,7 +149,6 @@
 	{
 	  pot_memb=0.0;
 	  times.push_back(simTime);
-	  time=0;
 	  setSpike(true);
 	  setNbSpikes(getNbSpikes()+1);
 	} 
@@ -175,7 +177,6 @@
 		      pot_memb+=(buffer_delay[clock%buffer_delay.size()]+ poissonGen(gen));
 		    }
 				
-		       buffer_delay[clock%buffer_delay.size()]=0;	
 	 }
 		 	
 	 
@@ -250,6 +251,12 @@
 	  */ 
 	 vector<int> Neuron::getEfficientConnections() const {return efficient_connections;}
 	 
+	 /*!
+	  * @brief getter of the amplitude of the signal the neuron is going to transmit
+	  * @return a double corresponding to this amplitude
+	  */ 
+	 double Neuron:: getJconnect() const {return j_connection;}
+	 
 //////////////setters
 	  /*!
 	  * @brief setter of Membrane Potential
@@ -301,4 +308,6 @@
 	  * @param a vector that will be the new value of the efficient_connections attribute
 	  */
 	 void Neuron::setEfficientConnections(vector<int> v) {efficient_connections=v;}
+	 
+	 void Neuron::setJconnect(double j) {j_connection=j;}
 	 
