@@ -67,8 +67,8 @@
 	  */
 	 void Neuron::connexions_fill(int num_neuron) 
 	 {											  
-	    random_device rd; 
-        mt19937 gen(rd());
+	    static random_device rd; 
+        static mt19937 gen(rd());
 	    int i(0); //counts excitatory connections
 	    int j(0); //counts inhibitory connections
 	  
@@ -135,7 +135,7 @@
 	  */ 
 	 bool Neuron::isRefractory(int simTime) const
 	{
-		return (!((times.empty()) or (simTime > (times.back() + t_refract))));
+		return (!((times.empty()) or (simTime > (times.back() + t_refract/dt))));
 	}
 		 
 	/*!
@@ -173,7 +173,7 @@
 		    {
 			  static random_device randomDevice;
 		      static mt19937 gen(randomDevice());
-		      static poisson_distribution<> poissonGen(Vext*Jext*dt*Ce);
+		      static poisson_distribution<> poissonGen(NU_EXT);
 		      pot_memb+=(buffer_delay[clock%buffer_delay.size()]+ poissonGen(gen));
 		    }
 				
@@ -309,5 +309,9 @@
 	  */
 	 void Neuron::setEfficientConnections(vector<int> v) {efficient_connections=v;}
 	 
+	 /*!
+	  * @brief set the amplitude of the signal the neuron is going to emit 
+	  * @param a double corresponding to this amplitude 
+	  */ 
 	 void Neuron::setJconnect(double j) {j_connection=j;}
 	 

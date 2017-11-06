@@ -34,8 +34,8 @@ void Simulation:: simulate_one_neuron()
 	n.setCurrElec(23.0);
 	n.setTest(true);
 	
-	int t(tstart);
-	while(t<tstop)
+	int t(tstart/dt);
+	while(t<tstop/dt)
 	 {
 	  t++;
 	  n.update_state(t);
@@ -51,8 +51,8 @@ void Simulation:: simulate_one_neuron()
 void Simulation:: simulate_two_neurons()
 {
 	Network N(new Neuron,new Neuron);
-	int t(tstart);
-	while(t<tstop)
+	int t(tstart/dt);
+	while(t<tstop/dt)
 	 {
 	  N.update(t);
 	  ++t;
@@ -76,8 +76,8 @@ void Simulation:: simulate_two_neurons()
 void Simulation:: simulate_Network()
 {   
 	Network N;
-	int t(tstart);
-	while(t<tstop)
+	int t(tstart/dt);
+	while(t<tstop/dt)
 	 {
 	  t++;
 	  N.update(t);
