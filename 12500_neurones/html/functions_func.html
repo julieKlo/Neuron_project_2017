@@ -68,14 +68,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="functions.html"><span>All</span></a></li>
       <li class="current"><a href="functions_func.html"><span>Functions</span></a></li>
+      <li><a href="functions_vars.html"><span>Variables</span></a></li>
     </ul>
   </div>
   <div id="navrow4" class="tabs3">
     <ul class="tablist">
+      <li><a href="#index_a"><span>a</span></a></li>
       <li><a href="#index_c"><span>c</span></a></li>
-      <li><a href="#index_e"><span>e</span></a></li>
       <li><a href="#index_g"><span>g</span></a></li>
       <li><a href="#index_n"><span>n</span></a></li>
+      <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
       <li><a href="#index_u"><span>u</span></a></li>
       <li><a href="#index_v"><span>v</span></a></li>
@@ -88,7 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -100,38 +102,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 &#160;
 
-<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
-<li>choose_simulation()
-: <a class="el" href="classSimulation.html#a04733a805552b695cc5366ab1f988a37">Simulation</a>
-</li>
-<li>connexions_fill()
-: <a class="el" href="classNeuron.html#a95fa7fa0496a9ba86626ad5605c1d6f7">Neuron</a>
+<h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>addConnexion()
+: <a class="el" href="classNeuron.html#a64e7272b0c36919343dce7fc5883bb02">Neuron</a>
 </li>
 </ul>
 
 
-<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
-<li>emit_signal()
-: <a class="el" href="classNeuron.html#a724ef0ece11309126cda892e354e81e1">Neuron</a>
+<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>choose_simulation()
+: <a class="el" href="classSimulation.html#a04733a805552b695cc5366ab1f988a37">Simulation</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
 <li>getBufferDelay()
-: <a class="el" href="classNeuron.html#a594f0e955a344a5b0cf1c27d1ea49963">Neuron</a>
+: <a class="el" href="classNeuron.html#a697760f26fa78469d0e15767b85c2ca8">Neuron</a>
 </li>
 <li>getClock()
 : <a class="el" href="classNeuron.html#ae5895ea008a267e0e834c35c8cd2cd68">Neuron</a>
 </li>
 <li>getConnexions()
-: <a class="el" href="classNeuron.html#a6acfebdeeff3f3105caf2e05a55d2c2d">Neuron</a>
+: <a class="el" href="classNeuron.html#a1fe0ce80926d9f5e928367a522aecf88">Neuron</a>
 </li>
 <li>getCurrElec()
 : <a class="el" href="classNeuron.html#ade3e91e8b14dddd572bdf7cba46b0770">Neuron</a>
-</li>
-<li>getEfficientConnections()
-: <a class="el" href="classNeuron.html#a2155b6a389fd82a10c5b48519af14e64">Neuron</a>
 </li>
 <li>getExcInhib()
 : <a class="el" href="classNeuron.html#a0c1fb45caebd2868e5a7b26bad3a9714">Neuron</a>
@@ -148,11 +144,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>getNeurons()
 : <a class="el" href="classNetwork.html#a8032b42ba5c9c445dcc0dd0a4916f633">Network</a>
 </li>
+<li>getPoissonNoise()
+: <a class="el" href="classNeuron.html#a3f9aaf0f86786b50211c74bc8b66fb61">Neuron</a>
+</li>
 <li>getPotMemb()
 : <a class="el" href="classNeuron.html#a8b4af30d823975f3b2ef3ae534f9ae5f">Neuron</a>
-</li>
-<li>getSpike()
-: <a class="el" href="classNeuron.html#a9c7aefda240dcf3ebdfc946c4e5925d7">Neuron</a>
 </li>
 <li>getTback()
 : <a class="el" href="classNeuron.html#ace97a76a0c9baaefb7985439ed4784b8">Neuron</a>
@@ -171,7 +167,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classNetwork.html#ae9a6eb526b5fe5cd8d5ae423d430f834">Network</a>
 </li>
 <li>Neuron()
-: <a class="el" href="classNeuron.html#a823487d01615fadb8ac19a2768dd9d96">Neuron</a>
+: <a class="el" href="classNeuron.html#ab9fa5be225c196284c9f742b25f9fcaa">Neuron</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>run()
+: <a class="el" href="classNetwork.html#acc13a2e54ee332bb9f288f953ae141ed">Network</a>
 </li>
 </ul>
 
@@ -186,9 +189,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>setCurrElec()
 : <a class="el" href="classNeuron.html#afe93c4d6b087e5d16220e0c0550fce01">Neuron</a>
 </li>
-<li>setEfficientConnections()
-: <a class="el" href="classNeuron.html#a5c88eb47ba197127e3a58c1a14269dff">Neuron</a>
-</li>
 <li>setExcInhib()
 : <a class="el" href="classNeuron.html#a47ee8e3d16f88abf78bee5a399f4a2be">Neuron</a>
 </li>
@@ -200,9 +200,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>setPotMemb()
 : <a class="el" href="classNeuron.html#a39a86229bfac42c2e9ebbb91dd8655e8">Neuron</a>
-</li>
-<li>setSpike()
-: <a class="el" href="classNeuron.html#ab777b1ed93449f79293601ec2557e5ed">Neuron</a>
 </li>
 <li>setTest()
 : <a class="el" href="classNeuron.html#a7509fbae2081d1d8188938ca51352169">Neuron</a>
@@ -220,7 +217,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classSimulation.html#aa6592e493217c02303339bf80cbda5eb">Simulation</a>
 </li>
 <li>Simulation()
-: <a class="el" href="classSimulation.html#a930144ecdcb42d15e2444554c4f60b3f">Simulation</a>
+: <a class="el" href="classSimulation.html#a5b224cc5b36bcc8eb29689aff223de41">Simulation</a>
 </li>
 <li>spike_emission()
 : <a class="el" href="classNeuron.html#a9d1f9ce3ee43c74eb0ff15b72256c417">Neuron</a>
@@ -233,7 +230,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="classNetwork.html#a295749c375dcb3c16ddbc5d5f52eba86">Network</a>
 </li>
 <li>update_state()
-: <a class="el" href="classNeuron.html#af4c3e28345913e29da87a372e817f3c8">Neuron</a>
+: <a class="el" href="classNeuron.html#a27200532368d5d042a7c575ef031f113">Neuron</a>
 </li>
 </ul>
 
@@ -256,7 +253,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 5 2017 13:10:59 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 8 2017 17:40:24 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

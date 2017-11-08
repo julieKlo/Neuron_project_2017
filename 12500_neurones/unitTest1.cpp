@@ -4,104 +4,106 @@
 #include "Constants.hpp"
 
 	  /*!
-	  * @brief Test if the membrane potential is well computed at the first step
+	  * @brief Tests if the membrane potential is well computed at the first step
 	  * we don't consider PoissonGeneration as the neuron is alone and it's difficult to
 	  * test because it's random.
 	  */
 TEST (NeuronTest, MembPotential) 
 {
 	Neuron n(true);
-	n.setCurrElec(1.0);
+	n.setCurrElec(1.01);
 	n.setTest(true);
 	
 	n.update_state(0);
 	
-	EXPECT_EQ(tau*(1.0-exp(-tstart/tau)), n.getPotMemb());
+	EXPECT_EQ(n.getCurrElec()* tau/C * (1-exp(-dt/tau)), n.getPotMemb());
 	cout<<"			Right initial Membrane Potential"<<endl;
 }
 
 	  /*!
-	  * @brief Test if after one step the computation of the membrane potential is still right
-	  * we don't consider PoissonGeneration as the neuron is alone and it's difficult to
-	  * test because it's random.
+	  * @brief Tests if the times when spikes occur for a single neuron are right (as expcted)
 	  */
-TEST (NeuronTest, MembPotInTime)
+TEST (NeuronTest, SpikesInTime)
 {
 	Neuron n(true);
-	n.setCurrElec(1.0);
+	n.setCurrElec(1.01);
 	n.setTest(true);
 	
-	n.update_state(1);
-	EXPECT_EQ(tau*(1.0-exp(-1/tau)), n.getPotMemb());
-	cout<<"			Right time for membrane Potential"<<endl;
+	int t(tstart);
+	while(t<tstop)
+	 {
+	  n.update_state(t);
+	  t++;
+
+	 }
+	 
+	EXPECT_EQ(924, n.getTimes()[0]);
+	EXPECT_EQ(1868, n.getTimes()[1]);
+	EXPECT_EQ(2812, n.getTimes()[2]);
+	
+	cout<<"			Right times for spikes"<<endl;
 }
 
 	  /*!
-	  * @brief test if the number of spikes is right
+	  * @brief test if the number of spikes generated is right (as many as expected)
 	  * we don't consider PoissonGeneration as the neuron is alone and it's difficult to
 	  * test because it's random.
 	  */
 TEST (NeuronTest, NbSpikes)
 {
 	Neuron n(true);
-	n.setCurrElec(23.0);
+	n.setCurrElec(1.01);
 	n.setTest(true);
 	
-	n.update_state(1);
-	EXPECT_EQ(0,n.getNbSpikes());
+	int t(tstart);
+	while(t<tstop)
+	 {
+	  n.update_state(t);
+	  t++;
+
+	 }
 	
-	int t(tstart/dt);
-	while(t<tstop/dt)
-	{
-		n.update_state(t);
-		++t;
-	}
-	EXPECT_EQ(4,n.getNbSpikes()); 
+	EXPECT_EQ(10,n.getNbSpikes()); 
 	cout<<"			Right Number of Spikes generated"<<endl;
 	
-	EXPECT_FALSE(n.getTimes().empty());
-	cout<<"		       Spike times have been stored"<<endl;
+	EXPECT_EQ(10,n.getTimes().size());
+	cout<<"		    Right number of spike times have been stored"<<endl;
 
 	
 }
 
-	  /*!
-	  * @brief test if the connection between 2 neurons is well generated
-	  */
-	  /*
-TEST (NeuronTest, ConnexionGeneration)
+
+   /*!
+    * @brief tests if the attribution of the amplitude of the signal the neuron will transmit is right
+    */ 
+TEST (NeuronTest, J_Value)
 {
-	Neuron n1;
-	n1.connexions_fill(1);
-	EXPECT_EQ(conn_exc+conn_inh,n1.getNbConn());
-	cout<<"			Connections generated"<<endl;
+	Neuron n1(true);
+	EXPECT_EQ(Je,n1.getJconnect());
 	
-}*/
+	Neuron n2(false);
+	EXPECT_EQ(Ji,n2.getJconnect());
+	
+	cout<<"			Right attribution of J value"<<endl;
+}
 
 	  /*!
-	  * @brief test if when 2 neurons are connected the signal is well transmitted
+	  * @brief tests if when 2 neurons are connected the signals are well transmitted
 	  */
-/*TEST (NetworkTest, ReceiveSignal)
+TEST (NetworkTest, ReceiveSignal)
 {
-
-	Network N(new Neuron,new Neuron);
+	Network N(new Neuron(true), new Neuron(true));
+	N.run();
 	
-	N.getNeurons()[0]->setSpike(true);
-	N.getNeurons()[0]->emit_signal(N.getNeurons()[1]);
-	EXPECT_EQ(Je,N.getNeurons()[1]->getBufferDelay()[D]);
-	cout<<"			Excitatory signal generated from one neuron to the other"<<endl;
+	EXPECT_FALSE(N.getNeurons()[0]->getTimes().empty());
+	EXPECT_FALSE(N.getNeurons()[1]->getTimes().empty());
+	cout<<"			Both neurons spiked"<<endl;
+
+	EXPECT_FALSE(N.countEmittedSignals==0);
+	cout<<"			Neurons were connected and sent signals"<<endl;
 	
 
-	N.getNeurons()[1]->setBufferDelay(D,0);
-	N.getNeurons()[0]->setExcInhib(false);
-	N.getNeurons()[0]->setJconnect(Ji-0.1);
-	N.getNeurons()[0]->setSpike(true);
-	cout<<"Jconnect "<<N.getNeurons()[0]->getJconnect()<<endl;
-	N.getNeurons()[0]->emit_signal(N.getNeurons()[1]);
-	EXPECT_EQ(Ji,N.getNeurons()[1]->getBufferDelay()[D]);
-	cout<<"			Inhibitory signal generated from one neuron to the other"<<endl;
-
- }*/					
+ }					
  
 	  /*!
 	  * @brief test if the right number of neurons is generated
@@ -126,9 +128,7 @@ TEST (NetworkTest, CreateNeurons)
 	cout<<"		    Right number of inhibitory neurons"<<endl;
 }
 
-	  /*!
-	  * @brief test if the attitude of various neurons is coherent
-	  */
+
 
 
 

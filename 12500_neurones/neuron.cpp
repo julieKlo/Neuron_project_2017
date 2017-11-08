@@ -8,8 +8,11 @@
 	  * @brief Constructor of neuron 
 	  * 
 	  * At the begining the neuron doesn't have any connections (created after) neither membrane 
-	  * potential (=0), it's excitatory by default, it hasn't spiked, and time=0 because it's in 
-	  * refractory phase and curr elec is 0 .
+	  * potential (=0), it hasn't spiked its number of spikes is zero, it has just been created so its clock is
+	  * also zero, it's not test by default and electric current is 0.
+	  * Then it didn't receive any spike so the buffer is full of zeros as the spike times and the connections haven't been
+	  * generated yet.
+	  * Finally j_connection is assigned according to the type of the neuron (excitatory or inhibitory).
 	  */
 	 Neuron::Neuron(bool ExcInh): pot_memb(0), nb_spikes(0), exc_inhib(ExcInh),
 		clock(0), curr_elec(0), nbConn(0), test(false)  
@@ -36,7 +39,10 @@
 	 
  ////////////////Neuron evolution	 
 
-     
+     /*!
+      * @brief create a connection with a neuron whose index in the Network is i
+      * @param the number of the neuron with which the connection is created 
+      */ 
      void Neuron::addConnexion(int i) {
 		 connexions.push_back(i);
 		 nbConn++;
@@ -45,10 +51,14 @@
 	 /*!
 	  * @brief update the neuron at each simulation time
 	  * @param an int corresponding to the simulation time
+	  * @return a boolean (true=the neuron spiked and false=it didn't)
 	  * 
 	  * I check if my neuron emits a spike (when membrane potential exceeds maximum membrane potential 
 	  * (Vthershold)).
 	  * Then while it's refracting the membrane potential remains at 0.
+	  * If not, the membrane potential is computed and we need to empty the buffer as if it wasn't already empty
+	  * the signal has been received and the buffer needs to be cleaned.
+	  * We increment the clock and return a boolean telling if the neuron spiked or not (see upfate of Network to understand why).
 	  * 
 	  */
 	 bool Neuron::update_state (int simTime)
@@ -75,7 +85,7 @@
 	 }
 	 
 	 /*!
-	  * @brief allows to see if the neuron is refractory 
+	  * @brief allows to see if the neuron is in refractory phase
 	  * @param the simulation time to ""compute" the last time the neuron spiked
 	  */ 
 	 bool Neuron::isRefractory(int simTime) const
@@ -86,25 +96,23 @@
 	/*!
 	 *@brief treats the membrane potential during a spike emission
 	 * 
-	  * the neuron spiked so my membrane potential turns
-	  * back to 0, I add a spike time to the vector times, my time of refractory break turns back to t_refract
-	  * the neuron emits a spike (setSpike->true) and I add 1 to my total number of spikes.
+	 * the neuron spiked so my membrane potential turns
+	 * back to 0, I add a spike time to the vector times, and I add 1 to my total number of spikes.
 	 */
 	void Neuron::spike_emission(int simTime)
 	{
 	  pot_memb = 0.0;
 	  times.push_back(simTime);
-	  setNbSpikes(getNbSpikes()+1);
+	  nb_spikes++;
 	} 
 		 
 		 
 	 /*!
 	 * @brief it computes the membrane potential according to the specificity of neuron (if it's tested (has its own potential) or normal)
 	 * 
-	 * If it can spike alone it increases its membrane potential according to an input electric current curr_elec.
-	 * I add the poisson generation that corresponds to the connections that comes from the external neurons
-	 * (only if I'm not testing because it's difficult to test values with random generation)
-	 * and the contents of the buffer (that corresponds to the reception of a signal received with delay D).
+	 * The membrane potential is computed. Then: if the neuron is tested, which means curr_elec!=0, we just add the rest of the formula
+	 * and there is no poisson noise. Otherwise if it's not tested we only ad poisson noise.
+	 * Finally we add the value of the buffer which corresponds to signals the neuron received D steps before.
 	 */	 
 	 void Neuron::V_compute()
 	 {
@@ -166,14 +174,12 @@
 	  * @brief getter of vector connexions
 	  * @return the connexions of the neuron 
 	  */
-	 vector<int> Neuron::getConnexions() const {return connexions;}
+	 const vector<int>& Neuron::getConnexions() const {return connexions;}
 	 /*!
 	  * @brief getter of buffer_delay
 	  * @return  the array where are stored the signals the neuron is going to receive 
 	  */
-	 array<double, BUFFER_SIZE> Neuron::getBufferDelay() const {
-		 return buffer_delay;
-	 }
+	 array<double, BUFFER_SIZE> Neuron::getBufferDelay() const {return buffer_delay;}
 	 /*!
 	  * @brief getter of nb_Conn
 	  * @return the number of connexions the neuron has 
@@ -220,9 +226,11 @@
 	  * @brief setter of ExcInhib to tell if the neuron is excitatory (true) or inhibitory (false), used during construction of neurons
 	  * @param   a double which corresponds to an electric current
 	  */
-	 void Neuron:: setExcInhib(bool b) {exc_inhib=b;
+	 void Neuron:: setExcInhib(bool b) 
+	 {
+		 exc_inhib=b;
 		 j_connection = b ? Je : Ji;
-		 }
+	 }
 	 /*!
 	  * @brief setter of connexions 
 	  * @param  a vector of int corresponding to index of connections to other neurons

@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,6 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classNetwork-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Network Class Reference</div>  </div>
@@ -91,7 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae9a6eb526b5fe5cd8d5ae423d430f834"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetwork.html#ae9a6eb526b5fe5cd8d5ae423d430f834">Network</a> (<a class="el" href="classNeuron.html">Neuron</a> *n1, <a class="el" href="classNeuron.html">Neuron</a> *n2)</td></tr>
-<tr class="memdesc:ae9a6eb526b5fe5cd8d5ae423d430f834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to simulate the connection between 2 neurons */.  <a href="#ae9a6eb526b5fe5cd8d5ae423d430f834">More...</a><br/></td></tr>
+<tr class="memdesc:ae9a6eb526b5fe5cd8d5ae423d430f834"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to simulate the connection between 2 neurons.  <a href="#ae9a6eb526b5fe5cd8d5ae423d430f834">More...</a><br/></td></tr>
 <tr class="separator:ae9a6eb526b5fe5cd8d5ae423d430f834"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cc2fb4f8fa4d507077e8da85ce5a1c8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetwork.html#a3cc2fb4f8fa4d507077e8da85ce5a1c8">Network</a> ()</td></tr>
 <tr class="memdesc:a3cc2fb4f8fa4d507077e8da85ce5a1c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of a <a class="el" href="classNetwork.html">Network</a> whose number of neurons are in file <a class="el" href="Constants_8hpp_source.html">Constants.hpp</a>.  <a href="#a3cc2fb4f8fa4d507077e8da85ce5a1c8">More...</a><br/></td></tr>
@@ -99,12 +100,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7a4e19cdb4bf0c7ecf82baa643831492"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetwork.html#a7a4e19cdb4bf0c7ecf82baa643831492">~Network</a> ()</td></tr>
 <tr class="memdesc:a7a4e19cdb4bf0c7ecf82baa643831492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor that free the pointers.  <a href="#a7a4e19cdb4bf0c7ecf82baa643831492">More...</a><br/></td></tr>
 <tr class="separator:a7a4e19cdb4bf0c7ecf82baa643831492"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a295749c375dcb3c16ddbc5d5f52eba86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetwork.html#a295749c375dcb3c16ddbc5d5f52eba86">update</a> (int simTime)</td></tr>
-<tr class="memdesc:a295749c375dcb3c16ddbc5d5f52eba86"><td class="mdescLeft">&#160;</td><td class="mdescRight">update the <a class="el" href="classNetwork.html">Network</a> at each step of time (interactions between neurons)  <a href="#a295749c375dcb3c16ddbc5d5f52eba86">More...</a><br/></td></tr>
+<tr class="memitem:a295749c375dcb3c16ddbc5d5f52eba86"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a295749c375dcb3c16ddbc5d5f52eba86"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetwork.html#a295749c375dcb3c16ddbc5d5f52eba86">update</a> (int simTime)</td></tr>
+<tr class="memdesc:a295749c375dcb3c16ddbc5d5f52eba86"><td class="mdescLeft">&#160;</td><td class="mdescRight">update the <a class="el" href="classNetwork.html">Network</a> at each step of time (interactions between neurons) <br/></td></tr>
 <tr class="separator:a295749c375dcb3c16ddbc5d5f52eba86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc13a2e54ee332bb9f288f953ae141ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetwork.html#acc13a2e54ee332bb9f288f953ae141ed">run</a> ()</td></tr>
+<tr class="memdesc:acc13a2e54ee332bb9f288f953ae141ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">run the simulation (updates de <a class="el" href="classNetwork.html">Network</a> from time tstart to tstop)  <a href="#acc13a2e54ee332bb9f288f953ae141ed">More...</a><br/></td></tr>
+<tr class="separator:acc13a2e54ee332bb9f288f953ae141ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8032b42ba5c9c445dcc0dd0a4916f633"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classNeuron.html">Neuron</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetwork.html#a8032b42ba5c9c445dcc0dd0a4916f633">getNeurons</a> () const </td></tr>
 <tr class="memdesc:a8032b42ba5c9c445dcc0dd0a4916f633"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the neurons of the <a class="el" href="classNetwork.html">Network</a>  <a href="#a8032b42ba5c9c445dcc0dd0a4916f633">More...</a><br/></td></tr>
 <tr class="separator:a8032b42ba5c9c445dcc0dd0a4916f633"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a2d1276dc834d754aa68b25da70a4d793"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d1276dc834d754aa68b25da70a4d793"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNetwork.html#a2d1276dc834d754aa68b25da70a4d793">countEmittedSignals</a> = 0</td></tr>
+<tr class="memdesc:a2d1276dc834d754aa68b25da70a4d793"><td class="mdescLeft">&#160;</td><td class="mdescRight">to see how many signals have been emitted by the <a class="el" href="classNetwork.html">Network</a> during the simulation <br/></td></tr>
+<tr class="separator:a2d1276dc834d754aa68b25da70a4d793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae9a6eb526b5fe5cd8d5ae423d430f834"></a>
@@ -131,7 +143,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor to simulate the connection between 2 neurons */. </p>
+<p>Constructor to simulate the connection between 2 neurons. </p>
 <p>Constructor of the <a class="el" href="classNetwork.html">Network</a> composed of 2 neurons to observe the connection between them We create two excitatory neurons related by a connection from the first to the second. </p>
 
 </div>
@@ -150,7 +162,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor of a <a class="el" href="classNetwork.html">Network</a> whose number of neurons are in file <a class="el" href="Constants_8hpp_source.html">Constants.hpp</a>. </p>
-<p>Constructor of the <a class="el" href="classNetwork.html">Network</a> We create a tab in wich we have excitatory and inhibitory neurons related by connections. </p>
+<p>Constructor of the <a class="el" href="classNetwork.html">Network</a> We create a tab in wich we have excitatory and inhibitory neurons related by connections randomly generated. </p>
 
 </div>
 </div>
@@ -192,29 +204,21 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a295749c375dcb3c16ddbc5d5f52eba86"></a>
+<a class="anchor" id="acc13a2e54ee332bb9f288f953ae141ed"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Network::update </td>
+          <td class="memname">void Network::run </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>simTime</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>update the <a class="el" href="classNetwork.html">Network</a> at each step of time (interactions between neurons) </p>
-<p>update the <a class="el" href="classNetwork.html">Network</a> at each step of time</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">an</td><td>int corresponding to the simulation time</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>it updates each neuron of the <a class="el" href="classNetwork.html">Network</a> one at a time and send the signals if necessary (with method emit_signal) </p>
+<p>run the simulation (updates de <a class="el" href="classNetwork.html">Network</a> from time tstart to tstop) </p>
+<p>run the simulation from tstart to tstop (updates the neuron at each step of time) Until tstop we update each neuron. It returns a boolean telling if it spiked or not. If it spiked it sends a signal to all its connections and the number of emitted signals is incremented. </p>
 
 </div>
 </div>
@@ -225,7 +229,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 5 2017 13:10:59 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 8 2017 17:40:24 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

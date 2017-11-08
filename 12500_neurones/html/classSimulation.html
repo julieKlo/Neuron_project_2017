@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,9 +90,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a930144ecdcb42d15e2444554c4f60b3f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulation.html#a930144ecdcb42d15e2444554c4f60b3f">Simulation</a> (int n)</td></tr>
-<tr class="memdesc:a930144ecdcb42d15e2444554c4f60b3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of a simulation.  <a href="#a930144ecdcb42d15e2444554c4f60b3f">More...</a><br/></td></tr>
-<tr class="separator:a930144ecdcb42d15e2444554c4f60b3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b224cc5b36bcc8eb29689aff223de41"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulation.html#a5b224cc5b36bcc8eb29689aff223de41">Simulation</a> ()</td></tr>
+<tr class="memdesc:a5b224cc5b36bcc8eb29689aff223de41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor of a simulation.  <a href="#a5b224cc5b36bcc8eb29689aff223de41">More...</a><br/></td></tr>
+<tr class="separator:a5b224cc5b36bcc8eb29689aff223de41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48270844a14fb552bee8d992e75770ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulation.html#a48270844a14fb552bee8d992e75770ea">simulate_one_neuron</a> ()</td></tr>
 <tr class="memdesc:a48270844a14fb552bee8d992e75770ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">simulation of one neuron  <a href="#a48270844a14fb552bee8d992e75770ea">More...</a><br/></td></tr>
 <tr class="separator:a48270844a14fb552bee8d992e75770ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -107,28 +107,21 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a04733a805552b695cc5366ab1f988a37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a930144ecdcb42d15e2444554c4f60b3f"></a>
+<a class="anchor" id="a5b224cc5b36bcc8eb29689aff223de41"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Simulation::Simulation </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>n</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Constructor of a simulation. </p>
-<p>Consrtuct a simulatin according to n, an int chosen by the user on the terminal.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">n,an</td><td>int (equivalent to a SIMULATION_TYPE) corresponding to the user's choice The user enters a string which is converted into a SIMULATION_TYPE and the simulation is started according to this one (ONE_NEURON,TWO_NEURONS,NETWORK). </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Consrtuct a simulation chosen by the user thanks to the method <a class="el" href="classSimulation.html#a04733a805552b695cc5366ab1f988a37" title="allows to choose what we&#39;re going to simulate ">choose_simulation()</a> It chooses a type of simulation according to the simulation chosen by the user. </p>
 
 </div>
 </div>
@@ -147,7 +140,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>allows to choose what we're going to simulate </p>
-<p>Allows the user to choose the simulation he wants to compute. </p>
+<p>Allows the user to choose the simulation he wants to compute.</p>
+<p>The user enters a string which is converted into a SIMULATION_TYPE If it returns OTHER, the program will stop (see constructor) </p>
 
 </div>
 </div>
@@ -213,7 +207,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 5 2017 13:10:59 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 8 2017 17:40:24 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

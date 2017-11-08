@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['emit_5fsignal',['emit_signal',['../classNeuron.html#a724ef0ece11309126cda892e354e81e1',1,'Neuron']]]
+  ['choose_5fsimulation',['choose_simulation',['../classSimulation.html#a04733a805552b695cc5366ab1f988a37',1,'Simulation']]]
 ];

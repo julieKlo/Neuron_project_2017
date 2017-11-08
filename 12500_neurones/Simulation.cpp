@@ -3,11 +3,8 @@
 
 
 /*!
- * @brief Consrtuct a simulatin according to n, an int chosen by the user on the terminal
- * @param n, an int (equivalent to a SIMULATION_TYPE) corresponding to the user's choice
- * The user enters a string which is converted into a SIMULATION_TYPE and the simulation
- * is started according to this one 
- * (ONE_NEURON,TWO_NEURONS,NETWORK).
+ * @brief Consrtuct a simulation chosen by the user thanks to the method choose_simulation()
+ *  It chooses a type of simulation according to the simulation chosen by the user
  */ 
 Simulation::Simulation()
 {
@@ -52,14 +49,9 @@ void Simulation:: simulate_one_neuron()
 void Simulation:: simulate_two_neurons()
 {
 	Network N(new Neuron(true), new Neuron(true));
+		
+	N.run();
 	
-	int t(tstart);
-	while(t<tstop)
-	 {
-	  N.update(t);
-	  ++t;
-
-	 }
 	 for(size_t t(0);t<N.getNeurons().size();++t)
 	 {	 
        cout<<"times when spikes occured:"<<endl;
@@ -79,19 +71,8 @@ void Simulation:: simulate_two_neurons()
 void Simulation:: simulate_Network()
 {   
 	Network N = Network();
-	int t(tstart);
 	
 	N.run();
-	
-	/*
-	while(t<tstop)
-	 {
-	  N.update(t);
-	  if(t%100==0)
-	  {cout << t/100<<"%" << endl;}
-	  t++;
-	 }
-	 */
 	 
 	 
 	 ofstream sortie_spikes;
@@ -106,11 +87,13 @@ void Simulation:: simulate_Network()
 	 }
 	 	 sortie_spikes.close();   
 
-	 //for(int i(0); i<N.getNeurons()[0]->getConnexions().size();++i) {cout<<N.getNeurons()[0]->getConnexions()[i]<<endl;}
 }
 
 /*!
  * @brief Allows the user to choose the simulation he wants to compute
+ * 
+ * The user enters a string which is converted into a SIMULATION_TYPE 
+ * If it returns OTHER, the program will stop (see constructor)
  */ 
 SIMULATION_TYPE Simulation:: choose_simulation() 
 {

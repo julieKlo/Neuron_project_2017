@@ -9,7 +9,7 @@
 #include <fstream>
 
 using namespace std;
-enum SIMULATION_TYPE {ONE_NEURON,TWO_NEURONS,NETWORK,OTHER};
+enum SIMULATION_TYPE {ONE_NEURON,TWO_NEURONS,NETWORK,OTHER}; //!< enumarated type so that it's easier for the user to choose the simulation type
 
 class Simulation 
  {

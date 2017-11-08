@@ -5,15 +5,24 @@
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classNetwork_ae9a6eb526b5fe5cd8d5ae423d430f834}{Network} (\hyperlink{classNeuron}{Neuron} $\ast$n1, \hyperlink{classNeuron}{Neuron} $\ast$n2)
-\begin{DoxyCompactList}\small\item\em Constructor to simulate the connection between 2 neurons $\ast$/. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Constructor to simulate the connection between 2 neurons. \end{DoxyCompactList}\item 
 \hyperlink{classNetwork_a3cc2fb4f8fa4d507077e8da85ce5a1c8}{Network} ()
 \begin{DoxyCompactList}\small\item\em Constructor of a \hyperlink{classNetwork}{Network} whose number of neurons are in file \hyperlink{Constants_8hpp_source}{Constants.\-hpp}. \end{DoxyCompactList}\item 
 \hyperlink{classNetwork_a7a4e19cdb4bf0c7ecf82baa643831492}{$\sim$\-Network} ()
 \begin{DoxyCompactList}\small\item\em Destructor that free the pointers. \end{DoxyCompactList}\item 
-void \hyperlink{classNetwork_a295749c375dcb3c16ddbc5d5f52eba86}{update} (int sim\-Time)
+\hypertarget{classNetwork_a295749c375dcb3c16ddbc5d5f52eba86}{void \hyperlink{classNetwork_a295749c375dcb3c16ddbc5d5f52eba86}{update} (int sim\-Time)}\label{classNetwork_a295749c375dcb3c16ddbc5d5f52eba86}
+
 \begin{DoxyCompactList}\small\item\em update the \hyperlink{classNetwork}{Network} at each step of time (interactions between neurons) \end{DoxyCompactList}\item 
+void \hyperlink{classNetwork_acc13a2e54ee332bb9f288f953ae141ed}{run} ()
+\begin{DoxyCompactList}\small\item\em run the simulation (updates de \hyperlink{classNetwork}{Network} from time tstart to tstop) \end{DoxyCompactList}\item 
 vector$<$ \hyperlink{classNeuron}{Neuron} $\ast$ $>$ \hyperlink{classNetwork_a8032b42ba5c9c445dcc0dd0a4916f633}{get\-Neurons} () const 
 \begin{DoxyCompactList}\small\item\em return the neurons of the \hyperlink{classNetwork}{Network} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classNetwork_a2d1276dc834d754aa68b25da70a4d793}{int \hyperlink{classNetwork_a2d1276dc834d754aa68b25da70a4d793}{count\-Emitted\-Signals} = 0}\label{classNetwork_a2d1276dc834d754aa68b25da70a4d793}
+
+\begin{DoxyCompactList}\small\item\em to see how many signals have been emitted by the \hyperlink{classNetwork}{Network} during the simulation \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Constructor \& Destructor Documentation}
@@ -27,7 +36,7 @@ vector$<$ \hyperlink{classNeuron}{Neuron} $\ast$ $>$ \hyperlink{classNetwork_a80
 )}}\label{classNetwork_ae9a6eb526b5fe5cd8d5ae423d430f834}
 
 
-Constructor to simulate the connection between 2 neurons $\ast$/. 
+Constructor to simulate the connection between 2 neurons. 
 
 Constructor of the \hyperlink{classNetwork}{Network} composed of 2 neurons to observe the connection between them We create two excitatory neurons related by a connection from the first to the second. \hypertarget{classNetwork_a3cc2fb4f8fa4d507077e8da85ce5a1c8}{\index{Network@{Network}!Network@{Network}}
 \index{Network@{Network}!Network@{Network}}
@@ -40,7 +49,7 @@ Constructor of the \hyperlink{classNetwork}{Network} composed of 2 neurons to ob
 
 Constructor of a \hyperlink{classNetwork}{Network} whose number of neurons are in file \hyperlink{Constants_8hpp_source}{Constants.\-hpp}. 
 
-Constructor of the \hyperlink{classNetwork}{Network} We create a tab in wich we have excitatory and inhibitory neurons related by connections. \hypertarget{classNetwork_a7a4e19cdb4bf0c7ecf82baa643831492}{\index{Network@{Network}!$\sim$\-Network@{$\sim$\-Network}}
+Constructor of the \hyperlink{classNetwork}{Network} We create a tab in wich we have excitatory and inhibitory neurons related by connections randomly generated. \hypertarget{classNetwork_a7a4e19cdb4bf0c7ecf82baa643831492}{\index{Network@{Network}!$\sim$\-Network@{$\sim$\-Network}}
 \index{$\sim$\-Network@{$\sim$\-Network}!Network@{Network}}
 \subsubsection[{$\sim$\-Network}]{\setlength{\rightskip}{0pt plus 5cm}Network\-::$\sim$\-Network (
 \begin{DoxyParamCaption}
@@ -70,25 +79,18 @@ getter of neurons of the \hyperlink{classNetwork}{Network}
 \begin{DoxyReturn}{Returns}
 a vector of pointers over the neurons of the \hyperlink{classNetwork}{Network} 
 \end{DoxyReturn}
-\hypertarget{classNetwork_a295749c375dcb3c16ddbc5d5f52eba86}{\index{Network@{Network}!update@{update}}
-\index{update@{update}!Network@{Network}}
-\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Network\-::update (
+\hypertarget{classNetwork_acc13a2e54ee332bb9f288f953ae141ed}{\index{Network@{Network}!run@{run}}
+\index{run@{run}!Network@{Network}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}void Network\-::run (
 \begin{DoxyParamCaption}
-\item[{int}]{sim\-Time}
+{}
 \end{DoxyParamCaption}
-)}}\label{classNetwork_a295749c375dcb3c16ddbc5d5f52eba86}
+)}}\label{classNetwork_acc13a2e54ee332bb9f288f953ae141ed}
 
 
-update the \hyperlink{classNetwork}{Network} at each step of time (interactions between neurons) 
+run the simulation (updates de \hyperlink{classNetwork}{Network} from time tstart to tstop) 
 
-update the \hyperlink{classNetwork}{Network} at each step of time
-
-
-\begin{DoxyParams}{Parameters}
-{\em an} & int corresponding to the simulation time\\
-\hline
-\end{DoxyParams}
-it updates each neuron of the \hyperlink{classNetwork}{Network} one at a time and send the signals if necessary (with method emit\-\_\-signal) 
+run the simulation from tstart to tstop (updates the neuron at each step of time) Until tstop we update each neuron. It returns a boolean telling if it spiked or not. If it spiked it sends a signal to all its connections and the number of emitted signals is incremented. 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

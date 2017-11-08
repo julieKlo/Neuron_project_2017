@@ -16,7 +16,7 @@ class Neuron
 {
 	public:
 	//constructor destructor
-	 Neuron(bool ExcInh); //!< Constructor of neuron
+	 Neuron(bool ExcInh); //!< Constructor of neuron which takes a bool that set if it is an excitatory or inhibitory neuron
 	 ~Neuron();//!< Destructor of neuron
 	 
 	 //neuron evolution
@@ -24,8 +24,11 @@ class Neuron
 	 void V_compute(); //!< compute the membrane potential
 	 void spike_emission(int simTime);//!< treats the membrane potential during a spike emission
 	 
-	
-	static double getPoissonNoise() {
+	/*!
+	 * @brief generate randomly a value according to poisson generation
+	 * It will be used as the signals the neurons of the Network receive from the outdoor
+	 */ 
+	 static double getPoissonNoise() {
 		static random_device randomDevice;
 		static mt19937 gen(randomDevice());
 		static poisson_distribution<> poissonGen(NU_EXT);
@@ -44,11 +47,11 @@ class Neuron
 	 double getCurrElec() const; //!< return the electric current of the neuron
 	 int getClock() const; //!< return the life time of the neuron
 	 bool getExcInhib() const; //!< return if the neuron is excitatory or inhibitory
-	 vector<int> getConnexions() const; //!< return the connections of the neuron (through indexes)
+	 const vector<int>& getConnexions() const; //!< return the connections of the neuron (through indexes) the "&" allows not to copy the vector at each step of time
 	 array<double,16> getBufferDelay() const; //!< return the buffer in which are stored the signals theneuron is going to receive after the delay
 	 int getNbConn() const; //!< return the number of connections of the neuron
 	 bool getTest() const; //!< return if we are testing something (true) or just using it in the main
-	 double getJconnect() const;
+	 double getJconnect() const; //!< return the value of the amplitude of the signal the neuron can transmit
 	 
 	 //setters
 	 void setPotMemb(double p); //!< set the membrane potential
@@ -57,33 +60,38 @@ class Neuron
 	 void setCurrElec(double c); //!< set the electric current of the neuron
 	 void setExcInhib(bool b); //!< set the boolean telling if the neuron is excitatory or inhibitory
 	 void setConnexions(vector<int> v); //!< set the connections of the neuron
-	 void setBufferDelay(int place, double b); //!< set a square of the buffer
+	 void setBufferDelay(int place, double b); //!< set a square (square n°place) of the buffer with the value b
 	 void setTest(bool b); //!< set if we are testing something or just using it in the main
-	 void setJconnect(double j);
-	 void addConnexion(int i); //!< return the connections of the neuron (through indexes)
+	 void setJconnect(double j);//!< set the value of the amplitude signal the neuron is going to transmit
+	 void addConnexion(int i); //!< add a connection from the neuron to another (through indexes)
+	
 	
 	private:
+	
 	//potentials
 	 double pot_memb; //!< membrane potential of the neuron
 	 
 	//spikes
 	 int nb_spikes; //!< number of spikes it already had
 	 vector<double> times; //!< times when spikes occur
-	 bool exc_inhib; //!< true=excitatory and false=inhibitory
+	 bool exc_inhib; //!< true=the neuron is excitatory and false=inhibitory
 	 
 	//time
 	 int clock; //!< clock of the neuron
 	 array<double, BUFFER_SIZE> buffer_delay; //!< stores the pre-synaptic signals the neuron will receive with a delay D
 	 double curr_elec; //!< electric current 
 	 
-	 bool isRefractory(int simTime) const; //!< tests if neuron in refractory time
+	 bool isRefractory(int simTime) const; //!< tests if neuron is in refractory time
 	 
 	//connections
 	 vector<int> connexions; //!< vector of index corresponding to the neurons this one is connected to
 	 int nbConn; //!< number of connections the neuron has
-	 bool test; //!< true if we're testing, false else
+	 double j_connection; //!< amplitude of the signal the neuron is going to transmit
 
-	double j_connection; //!< potential received from connected neurons
+	 
+	//state
+	 bool test; //!< true if we're testing (eg: for 1 neuron, without poisson noise), false else
+
 
 	 
 };

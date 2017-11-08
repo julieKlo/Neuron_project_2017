@@ -6,7 +6,7 @@
 
 	  /*!
 	  * @brief Constructor of the Network 
-	  * We create a tab in wich we have excitatory and inhibitory neurons related by connections
+	  * We create a tab in wich we have excitatory and inhibitory neurons related by connections randomly generated
 	  */
  Network::Network()
  {
@@ -16,7 +16,7 @@
 	mt19937 gen(rd());
 	  
 	uniform_int_distribution<int> excitatoryDistribution(0, nbNeuronExc - 1); 
-	 uniform_int_distribution<int> inhibitoryDistribution(nbNeuronExc, nbNeuronExc + nbNeuronIn - 1); 
+	uniform_int_distribution<int> inhibitoryDistribution(nbNeuronExc, nbNeuronExc + nbNeuronIn - 1); 
 	  
 		
 	for(int i(0); i<nbNeuronExc;++i) 
@@ -25,7 +25,7 @@
 	    
 	  }
 	  
-	  for(int j(nbNeuronExc); j<(nbNeuronExc+nbNeuronIn);++j) 
+	  for(int j(0); j<nbNeuronIn;++j) 
 	  {
 		neurons.push_back(new Neuron(false));
 	  }
@@ -52,38 +52,11 @@
 	  }
 	  
 	  cout<<"#constructed neurons : "<<neurons.size()<<endl;
-  
+    
  }
  
  
- void Network::run() {
-	 int t = tstart;
-	 
-	 while(t < tstop)
-	 {
-		
-		for(size_t i(0); i<neurons.size();i++)
-		{
-			bool spiked = neurons[i]->update_state(t);
-			
-			if (spiked) {
-				for(size_t j(0);j < (neurons[i]->getConnexions().size());j++) 
-				{
-					neurons[j]->setBufferDelay( (t + D)%(BUFFER_SIZE), neurons[i]->getJconnect() );
-					countEmittedSignals++;
-				}	
-			}								  
-			  
-		}
-		
-		if (t % 100 == 0)
-		{
-			cout << t/100<<"%" << endl;
-		}
-		
-		t++;
-	 }
- }
+
 
  
 	  /*!
@@ -95,7 +68,7 @@
 	 neurons.push_back(n1);
 	 neurons.push_back(n2);
 	 
-	 // 0 transmet à 1
+	 // 0 transmits to 1
 	 neurons[0]->addConnexion(1);
  }					
 
@@ -115,35 +88,41 @@
 
 //////////////////Action on Network
 
-
-	  /*!
-	  * @brief update the Network at each step of time
-	  * @param an int corresponding to the simulation time
-	  * 
-	  * it updates each neuron of the Network one at a time
-	  * and send the signals if necessary (with method emit_signal)
-	  */
-	void Network:: update(int simTime)
-	{
-		for(size_t i(0); i<neurons.size();i++)
+	 /*!
+	  * @brief run the simulation from tstart to tstop (updates the neuron at each step of time)
+	  * Until tstop we update each neuron. It returns a boolean telling if it spiked or not. If it spiked
+	  * it sends a signal to all its connections and the number of emitted signals is incremented. 
+	  */ 
+	  
+	void Network::run() 
+ {
+	 
+		int t = tstart;
+	 
+		while(t < tstop)
 		{
-			bool spiked = neurons[i]->update_state(simTime);
+		
+			for(auto& neuron : neurons)
+			{
+			 bool spiked = neuron->update_state(t);
 			
-			if (spiked) {
-				for(size_t j(0);j<(neurons[i]->getConnexions().size());j++) 
+			 if (spiked)
+			  {
+				for(int target : neuron->getConnexions()) 
 				{
-					neurons[j]->setBufferDelay( (simTime+D)%(BUFFER_SIZE), neurons[i]->getJconnect() );
+					neurons[target]->setBufferDelay( (t + D)%(BUFFER_SIZE), neuron->getJconnect() );
 					countEmittedSignals++;
 				}	
-			}								  
+			  }										  
 			  
-		}
-		    
-	}
-			
-			
-	
+			}
 		
+		  //if (t % 100 == 0){cout << t/100<<"%" << endl;} //decomment to print the program state of avdvancement in %
+		
+		   t++;
+	   }
+ }
+
 		
 
 //////////////////getter
