@@ -23,6 +23,9 @@ class Network
 	//getter
 	vector<Neuron*> getNeurons() const; //!< return the neurons of the Network
 	
+		int countEmittedSignals = 0;
+
+	void run();
 	
 	private:
 	vector<Neuron*> neurons; //!< neurons interacting with each others

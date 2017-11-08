@@ -10,24 +10,80 @@
 	  */
  Network::Network()
  {
-	 for(int i(0); i<nbNeuronExc;++i) 
+	 neurons = {};
+	 
+	 random_device rd; 
+	mt19937 gen(rd());
+	  
+	uniform_int_distribution<int> excitatoryDistribution(0, nbNeuronExc - 1); 
+	 uniform_int_distribution<int> inhibitoryDistribution(nbNeuronExc, nbNeuronExc + nbNeuronIn - 1); 
+	  
+		
+	for(int i(0); i<nbNeuronExc;++i) 
 	  {
-	    neurons.push_back(new Neuron());
-	    neurons[i]->setExcInhib(true);
-	    neurons[i]->connexions_fill(i);
+	    neurons.push_back(new Neuron(true));
+	    
 	  }
 	  
-	 for(int j(nbNeuronExc); j<(nbNeuronExc+nbNeuronIn);++j) 
+	  for(int j(nbNeuronExc); j<(nbNeuronExc+nbNeuronIn);++j) 
 	  {
-		neurons.push_back(new Neuron());
-		neurons[j]->setExcInhib(false);
-		neurons[j]->connexions_fill(j);
+		neurons.push_back(new Neuron(false));
+	  }
+		
+		
+	for(int i(0); i<(nbNeuronExc+nbNeuronIn);++i) 
+	  {
+	    for (int exc(0); exc < conn_exc; ++exc) {
+			int generated = excitatoryDistribution(gen);
+			while (generated == i) {
+				generated = excitatoryDistribution(gen);
+			}
+			neurons[generated]->addConnexion(i);
+		}
+		
+		for (int inh(0); inh < conn_inh; ++inh) {
+			int generated = inhibitoryDistribution(gen);
+			while (generated == i) {
+				generated = inhibitoryDistribution(gen);
+			}
+			neurons[generated]->addConnexion(i);
+		}
+	    
 	  }
 	  
 	  cout<<"#constructed neurons : "<<neurons.size()<<endl;
   
  }
  
+ 
+ void Network::run() {
+	 int t = tstart;
+	 
+	 while(t < tstop)
+	 {
+		
+		for(size_t i(0); i<neurons.size();i++)
+		{
+			bool spiked = neurons[i]->update_state(t);
+			
+			if (spiked) {
+				for(size_t j(0);j < (neurons[i]->getConnexions().size());j++) 
+				{
+					neurons[j]->setBufferDelay( (t + D)%(BUFFER_SIZE), neurons[i]->getJconnect() );
+					countEmittedSignals++;
+				}	
+			}								  
+			  
+		}
+		
+		if (t % 100 == 0)
+		{
+			cout << t/100<<"%" << endl;
+		}
+		
+		t++;
+	 }
+ }
 
  
 	  /*!
@@ -38,8 +94,9 @@
  {
 	 neurons.push_back(n1);
 	 neurons.push_back(n2);
-	 neurons[0]->setEfficientConnections(vector<int>({1}));
-	 neurons[1]->setEfficientConnections(vector<int>({}));
+	 
+	 // 0 transmet à 1
+	 neurons[0]->addConnexion(1);
  }					
 
 	  /*!
@@ -49,7 +106,6 @@
  {
     for (auto& e : neurons)
      {
-        e->setSpike(false);
         delete e;
         e=nullptr;
      }
@@ -71,12 +127,15 @@
 	{
 		for(size_t i(0); i<neurons.size();i++)
 		{
-			neurons[i]->update_state(simTime);
+			bool spiked = neurons[i]->update_state(simTime);
 			
-			for(size_t j(0);j<(neurons[i]->getEfficientConnections().size());j++) 
-			{
-				 neurons[i]->emit_signal(neurons[neurons[i]->getEfficientConnections()[j]]);
-			}									  
+			if (spiked) {
+				for(size_t j(0);j<(neurons[i]->getConnexions().size());j++) 
+				{
+					neurons[j]->setBufferDelay( (simTime+D)%(BUFFER_SIZE), neurons[i]->getJconnect() );
+					countEmittedSignals++;
+				}	
+			}								  
 			  
 		}
 		    

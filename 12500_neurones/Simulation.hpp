@@ -16,7 +16,7 @@ class Simulation
 	
 	public:
 	
-	  Simulation(int n); //!< Constructor of a simulation
+	  Simulation(); //!< Constructor of a simulation
 	  void simulate_one_neuron(); //!< simulation of one neuron
 	  void simulate_two_neurons(); //!< simulation os 2 neurons
 	  void simulate_Network(); //!< simulation of a complete Network

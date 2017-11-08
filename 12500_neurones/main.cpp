@@ -11,8 +11,7 @@ using namespace std;
  */ 
 int main()
 {
-   int n;
-   Simulation S(n);
+   Simulation S;
 
    return 0;
 }

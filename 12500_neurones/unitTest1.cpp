@@ -10,7 +10,7 @@
 	  */
 TEST (NeuronTest, MembPotential) 
 {
-	Neuron n;
+	Neuron n(true);
 	n.setCurrElec(1.0);
 	n.setTest(true);
 	
@@ -27,7 +27,7 @@ TEST (NeuronTest, MembPotential)
 	  */
 TEST (NeuronTest, MembPotInTime)
 {
-	Neuron n;
+	Neuron n(true);
 	n.setCurrElec(1.0);
 	n.setTest(true);
 	
@@ -43,15 +43,15 @@ TEST (NeuronTest, MembPotInTime)
 	  */
 TEST (NeuronTest, NbSpikes)
 {
-	Neuron n;
+	Neuron n(true);
 	n.setCurrElec(23.0);
 	n.setTest(true);
 	
 	n.update_state(1);
 	EXPECT_EQ(0,n.getNbSpikes());
 	
-	int t(tstart);
-	while(t<tstop)
+	int t(tstart/dt);
+	while(t<tstop/dt)
 	{
 		n.update_state(t);
 		++t;
@@ -59,7 +59,7 @@ TEST (NeuronTest, NbSpikes)
 	EXPECT_EQ(4,n.getNbSpikes()); 
 	cout<<"			Right Number of Spikes generated"<<endl;
 	
-	EXPECT_EQ(false,n.getTimes().empty());
+	EXPECT_FALSE(n.getTimes().empty());
 	cout<<"		       Spike times have been stored"<<endl;
 
 	
@@ -68,6 +68,7 @@ TEST (NeuronTest, NbSpikes)
 	  /*!
 	  * @brief test if the connection between 2 neurons is well generated
 	  */
+	  /*
 TEST (NeuronTest, ConnexionGeneration)
 {
 	Neuron n1;
@@ -75,12 +76,12 @@ TEST (NeuronTest, ConnexionGeneration)
 	EXPECT_EQ(conn_exc+conn_inh,n1.getNbConn());
 	cout<<"			Connections generated"<<endl;
 	
-}
+}*/
 
 	  /*!
 	  * @brief test if when 2 neurons are connected the signal is well transmitted
 	  */
-TEST (NetworkTest, ReceiveSignal)
+/*TEST (NetworkTest, ReceiveSignal)
 {
 
 	Network N(new Neuron,new Neuron);
@@ -100,7 +101,7 @@ TEST (NetworkTest, ReceiveSignal)
 	EXPECT_EQ(Ji,N.getNeurons()[1]->getBufferDelay()[D]);
 	cout<<"			Inhibitory signal generated from one neuron to the other"<<endl;
 
- }					
+ }*/					
  
 	  /*!
 	  * @brief test if the right number of neurons is generated

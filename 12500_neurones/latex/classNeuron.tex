@@ -1,0 +1,587 @@
+\hypertarget{classNeuron}{\section{Neuron Class Reference}
+\label{classNeuron}\index{Neuron@{Neuron}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNeuron_a823487d01615fadb8ac19a2768dd9d96}{Neuron} ()
+\begin{DoxyCompactList}\small\item\em Constructor of neuron. \end{DoxyCompactList}\item 
+\hypertarget{classNeuron_a94a250ce7e167760e593979b899745b1}{\hyperlink{classNeuron_a94a250ce7e167760e593979b899745b1}{$\sim$\-Neuron} ()}\label{classNeuron_a94a250ce7e167760e593979b899745b1}
+
+\begin{DoxyCompactList}\small\item\em Destructor of neuron. \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_af4c3e28345913e29da87a372e817f3c8}{update\-\_\-state} (int sim\-Time)
+\begin{DoxyCompactList}\small\item\em Update the neuron at each step of time. \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a724ef0ece11309126cda892e354e81e1}{emit\-\_\-signal} (\hyperlink{classNeuron}{Neuron} $\ast$other)
+\begin{DoxyCompactList}\small\item\em Allows a neuron to emit a signal toward its connections once it spiked. \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a95fa7fa0496a9ba86626ad5605c1d6f7}{connexions\-\_\-fill} (int num\-\_\-neuron)
+\begin{DoxyCompactList}\small\item\em create connections randomly from the neuron toward other neurons through indexes (int) \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a78ad401819336b210c9f0a1b7b676e53}{V\-\_\-compute} ()
+\begin{DoxyCompactList}\small\item\em compute the membrane potential \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a9d1f9ce3ee43c74eb0ff15b72256c417}{spike\-\_\-emission} (int sim\-Time)
+\begin{DoxyCompactList}\small\item\em treats the membrane potential during a spike emission \end{DoxyCompactList}\item 
+double \hyperlink{classNeuron_a8b4af30d823975f3b2ef3ae534f9ae5f}{get\-Pot\-Memb} () const 
+\begin{DoxyCompactList}\small\item\em return the membrane potential \end{DoxyCompactList}\item 
+int \hyperlink{classNeuron_ab1efa405eb0cd7bac6ca012c961efe5d}{get\-Nb\-Spikes} () const 
+\begin{DoxyCompactList}\small\item\em return the number of spikes the neuron lived \end{DoxyCompactList}\item 
+vector$<$ double $>$ \hyperlink{classNeuron_ae78f9ef057b2388e388d8c15343b5644}{get\-Times} () const 
+\begin{DoxyCompactList}\small\item\em return the times corresponding to the spikes of the neuron \end{DoxyCompactList}\item 
+double \hyperlink{classNeuron_ace97a76a0c9baaefb7985439ed4784b8}{get\-Tback} () const 
+\begin{DoxyCompactList}\small\item\em return the last element of the spike times \end{DoxyCompactList}\item 
+bool \hyperlink{classNeuron_a9c7aefda240dcf3ebdfc946c4e5925d7}{get\-Spike} () const 
+\begin{DoxyCompactList}\small\item\em return the boolean telling if the neuron just spiked or not \end{DoxyCompactList}\item 
+double \hyperlink{classNeuron_ade3e91e8b14dddd572bdf7cba46b0770}{get\-Curr\-Elec} () const 
+\begin{DoxyCompactList}\small\item\em return the electric current of the neuron \end{DoxyCompactList}\item 
+int \hyperlink{classNeuron_ae5895ea008a267e0e834c35c8cd2cd68}{get\-Clock} () const 
+\begin{DoxyCompactList}\small\item\em return the life time of the neuron \end{DoxyCompactList}\item 
+bool \hyperlink{classNeuron_a0c1fb45caebd2868e5a7b26bad3a9714}{get\-Exc\-Inhib} () const 
+\begin{DoxyCompactList}\small\item\em return if the neuron is excitatory or inhibitory \end{DoxyCompactList}\item 
+vector$<$ int $>$ \hyperlink{classNeuron_a6acfebdeeff3f3105caf2e05a55d2c2d}{get\-Connexions} () const 
+\begin{DoxyCompactList}\small\item\em return the connections of the neuron (through indexes) \end{DoxyCompactList}\item 
+array$<$ double, 16 $>$ \hyperlink{classNeuron_a594f0e955a344a5b0cf1c27d1ea49963}{get\-Buffer\-Delay} () const 
+\begin{DoxyCompactList}\small\item\em return the buffer in which are stored the signals theneuron is going to receive after the delay \end{DoxyCompactList}\item 
+int \hyperlink{classNeuron_a864fc4c8fe9c2e303f6617553c729661}{get\-Nb\-Conn} () const 
+\begin{DoxyCompactList}\small\item\em return the number of connections of the neuron \end{DoxyCompactList}\item 
+bool \hyperlink{classNeuron_ade02b2e51d19c01b2dbe032ecd8de8d1}{get\-Test} () const 
+\begin{DoxyCompactList}\small\item\em return if we are testing something (true) or just using it in the main \end{DoxyCompactList}\item 
+vector$<$ int $>$ \hyperlink{classNeuron_a2155b6a389fd82a10c5b48519af14e64}{get\-Efficient\-Connections} () const 
+\begin{DoxyCompactList}\small\item\em getter of efficient connections (which are !=0) \end{DoxyCompactList}\item 
+double \hyperlink{classNeuron_a33a5eec13c1431b19cd4c9fc1bb02c0d}{get\-Jconnect} () const 
+\begin{DoxyCompactList}\small\item\em getter of the amplitude of the signal the neuron is going to transmit \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a39a86229bfac42c2e9ebbb91dd8655e8}{set\-Pot\-Memb} (double p)
+\begin{DoxyCompactList}\small\item\em set the membrane potential \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_afd39ff97179ef4f074653f024b69b610}{set\-Nb\-Spikes} (int n)
+\begin{DoxyCompactList}\small\item\em set the number of spikes the neuron lived \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a46444e31c0b2cda937344b0a41ff59da}{set\-Times} (vector$<$ double $>$ t)
+\begin{DoxyCompactList}\small\item\em set the spike times \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_ab777b1ed93449f79293601ec2557e5ed}{set\-Spike} (bool s)
+\begin{DoxyCompactList}\small\item\em set the boolean telling if the neuron spiked or not \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_afe93c4d6b087e5d16220e0c0550fce01}{set\-Curr\-Elec} (double c)
+\begin{DoxyCompactList}\small\item\em set the electric current of the neuron \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a47ee8e3d16f88abf78bee5a399f4a2be}{set\-Exc\-Inhib} (bool b)
+\begin{DoxyCompactList}\small\item\em set the boolean telling if the neuron is excitatory or inhibitory \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_ad5f0c6229057cd544d3828f15ae527a7}{set\-Connexions} (vector$<$ int $>$ v)
+\begin{DoxyCompactList}\small\item\em set the connections of the neuron \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a666ab405d0710b81a0bb5167269bb2b8}{set\-Buffer\-Delay} (int place, double b)
+\begin{DoxyCompactList}\small\item\em set a square of the buffer \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a7509fbae2081d1d8188938ca51352169}{set\-Test} (bool b)
+\begin{DoxyCompactList}\small\item\em set if we are testing something or just using it in the main \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a5c88eb47ba197127e3a58c1a14269dff}{set\-Efficient\-Connections} (vector$<$ int $>$ v)
+\begin{DoxyCompactList}\small\item\em setter of efficient connections (used when \hyperlink{classNetwork}{Network(n1,n2)}) \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a702042e0f4f193b6c74806ac911a9a4b}{set\-Jconnect} (double j)
+\begin{DoxyCompactList}\small\item\em set the amplitude of the signal the neuron is going to emit \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classNeuron_a823487d01615fadb8ac19a2768dd9d96}{\index{Neuron@{Neuron}!Neuron@{Neuron}}
+\index{Neuron@{Neuron}!Neuron@{Neuron}}
+\subsubsection[{Neuron}]{\setlength{\rightskip}{0pt plus 5cm}Neuron\-::\-Neuron (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a823487d01615fadb8ac19a2768dd9d96}
+
+
+Constructor of neuron. 
+
+At the begining the neuron doesn't have any connections (created after) neither membrane potential (=0), it's excitatory by default, it hasn't spiked, and time=0 because it's in refractory phase and curr elec is 0 . 
+
+\subsection{Member Function Documentation}
+\hypertarget{classNeuron_a95fa7fa0496a9ba86626ad5605c1d6f7}{\index{Neuron@{Neuron}!connexions\-\_\-fill@{connexions\-\_\-fill}}
+\index{connexions\-\_\-fill@{connexions\-\_\-fill}!Neuron@{Neuron}}
+\subsubsection[{connexions\-\_\-fill}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::connexions\-\_\-fill (
+\begin{DoxyParamCaption}
+\item[{int}]{num\-\_\-neuron}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a95fa7fa0496a9ba86626ad5605c1d6f7}
+
+
+create connections randomly from the neuron toward other neurons through indexes (int) 
+
+fill the vector of connections of one neuron
+
+
+\begin{DoxyParams}{Parameters}
+{\em an} & int to avoid the neuron to connect to itself\\
+\hline
+\end{DoxyParams}
+While we don't have as many excitatory (respectively inhibitory) connections as expected, we create randomly connections by generating a number belowing to the number of excitatory (respectively inhibitory) neurons. In the square of the neuron corresponding to the random number we add 1 to show that 1 more connection between the 2 neurons exists. Then we sort this tab to optimize the signal transmission in the simulation (allows to cross the tab faster by creating a new tab with positive connections). \hypertarget{classNeuron_a724ef0ece11309126cda892e354e81e1}{\index{Neuron@{Neuron}!emit\-\_\-signal@{emit\-\_\-signal}}
+\index{emit\-\_\-signal@{emit\-\_\-signal}!Neuron@{Neuron}}
+\subsubsection[{emit\-\_\-signal}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::emit\-\_\-signal (
+\begin{DoxyParamCaption}
+\item[{{\bf Neuron} $\ast$}]{other}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a724ef0ece11309126cda892e354e81e1}
+
+
+Allows a neuron to emit a signal toward its connections once it spiked. 
+
+allows a neuron that spiked to send a signal to another neuron
+
+
+\begin{DoxyParams}{Parameters}
+{\em the} & neuron that will receive the signal\\
+\hline
+\end{DoxyParams}
+when the neuron has spiked, it sends a signal to the neurons it's connected to with an amplitude Je (if excitatory) and Ji (if inhibitory). \hypertarget{classNeuron_a594f0e955a344a5b0cf1c27d1ea49963}{\index{Neuron@{Neuron}!get\-Buffer\-Delay@{get\-Buffer\-Delay}}
+\index{get\-Buffer\-Delay@{get\-Buffer\-Delay}!Neuron@{Neuron}}
+\subsubsection[{get\-Buffer\-Delay}]{\setlength{\rightskip}{0pt plus 5cm}array$<$ double, 16 $>$ Neuron\-::get\-Buffer\-Delay (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a594f0e955a344a5b0cf1c27d1ea49963}
+
+
+return the buffer in which are stored the signals theneuron is going to receive after the delay 
+
+getter of buffer\-\_\-delay
+
+\begin{DoxyReturn}{Returns}
+the array where are stored the signals the neuron is going to receive 
+\end{DoxyReturn}
+\hypertarget{classNeuron_ae5895ea008a267e0e834c35c8cd2cd68}{\index{Neuron@{Neuron}!get\-Clock@{get\-Clock}}
+\index{get\-Clock@{get\-Clock}!Neuron@{Neuron}}
+\subsubsection[{get\-Clock}]{\setlength{\rightskip}{0pt plus 5cm}int Neuron\-::get\-Clock (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_ae5895ea008a267e0e834c35c8cd2cd68}
+
+
+return the life time of the neuron 
+
+getter of clock
+
+\begin{DoxyReturn}{Returns}
+life time of the neuron 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a6acfebdeeff3f3105caf2e05a55d2c2d}{\index{Neuron@{Neuron}!get\-Connexions@{get\-Connexions}}
+\index{get\-Connexions@{get\-Connexions}!Neuron@{Neuron}}
+\subsubsection[{get\-Connexions}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ int $>$ Neuron\-::get\-Connexions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a6acfebdeeff3f3105caf2e05a55d2c2d}
+
+
+return the connections of the neuron (through indexes) 
+
+getter of vector connexions
+
+\begin{DoxyReturn}{Returns}
+the connexions of the neuron 
+\end{DoxyReturn}
+\hypertarget{classNeuron_ade3e91e8b14dddd572bdf7cba46b0770}{\index{Neuron@{Neuron}!get\-Curr\-Elec@{get\-Curr\-Elec}}
+\index{get\-Curr\-Elec@{get\-Curr\-Elec}!Neuron@{Neuron}}
+\subsubsection[{get\-Curr\-Elec}]{\setlength{\rightskip}{0pt plus 5cm}double Neuron\-::get\-Curr\-Elec (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_ade3e91e8b14dddd572bdf7cba46b0770}
+
+
+return the electric current of the neuron 
+
+getter of curr\-\_\-elec
+
+\begin{DoxyReturn}{Returns}
+the electric current the neuron suffers 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a2155b6a389fd82a10c5b48519af14e64}{\index{Neuron@{Neuron}!get\-Efficient\-Connections@{get\-Efficient\-Connections}}
+\index{get\-Efficient\-Connections@{get\-Efficient\-Connections}!Neuron@{Neuron}}
+\subsubsection[{get\-Efficient\-Connections}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ int $>$ Neuron\-::get\-Efficient\-Connections (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a2155b6a389fd82a10c5b48519af14e64}
+
+
+getter of efficient connections (which are !=0) 
+
+\begin{DoxyReturn}{Returns}
+a vector of index of neurons this is connected to 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a0c1fb45caebd2868e5a7b26bad3a9714}{\index{Neuron@{Neuron}!get\-Exc\-Inhib@{get\-Exc\-Inhib}}
+\index{get\-Exc\-Inhib@{get\-Exc\-Inhib}!Neuron@{Neuron}}
+\subsubsection[{get\-Exc\-Inhib}]{\setlength{\rightskip}{0pt plus 5cm}bool Neuron\-::get\-Exc\-Inhib (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a0c1fb45caebd2868e5a7b26bad3a9714}
+
+
+return if the neuron is excitatory or inhibitory 
+
+getter of exc\-\_\-inhib
+
+\begin{DoxyReturn}{Returns}
+true if neuron is excitatory, false if inhibitory 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a33a5eec13c1431b19cd4c9fc1bb02c0d}{\index{Neuron@{Neuron}!get\-Jconnect@{get\-Jconnect}}
+\index{get\-Jconnect@{get\-Jconnect}!Neuron@{Neuron}}
+\subsubsection[{get\-Jconnect}]{\setlength{\rightskip}{0pt plus 5cm}double Neuron\-::get\-Jconnect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a33a5eec13c1431b19cd4c9fc1bb02c0d}
+
+
+getter of the amplitude of the signal the neuron is going to transmit 
+
+\begin{DoxyReturn}{Returns}
+a double corresponding to this amplitude 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a864fc4c8fe9c2e303f6617553c729661}{\index{Neuron@{Neuron}!get\-Nb\-Conn@{get\-Nb\-Conn}}
+\index{get\-Nb\-Conn@{get\-Nb\-Conn}!Neuron@{Neuron}}
+\subsubsection[{get\-Nb\-Conn}]{\setlength{\rightskip}{0pt plus 5cm}int Neuron\-::get\-Nb\-Conn (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a864fc4c8fe9c2e303f6617553c729661}
+
+
+return the number of connections of the neuron 
+
+getter of nb\-\_\-\-Conn
+
+\begin{DoxyReturn}{Returns}
+the number of connexions the neuron has 
+\end{DoxyReturn}
+\hypertarget{classNeuron_ab1efa405eb0cd7bac6ca012c961efe5d}{\index{Neuron@{Neuron}!get\-Nb\-Spikes@{get\-Nb\-Spikes}}
+\index{get\-Nb\-Spikes@{get\-Nb\-Spikes}!Neuron@{Neuron}}
+\subsubsection[{get\-Nb\-Spikes}]{\setlength{\rightskip}{0pt plus 5cm}int Neuron\-::get\-Nb\-Spikes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_ab1efa405eb0cd7bac6ca012c961efe5d}
+
+
+return the number of spikes the neuron lived 
+
+getter of number of spikes whose times are in the vector named times
+
+\begin{DoxyReturn}{Returns}
+number of spikes the neuron has already lived 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a8b4af30d823975f3b2ef3ae534f9ae5f}{\index{Neuron@{Neuron}!get\-Pot\-Memb@{get\-Pot\-Memb}}
+\index{get\-Pot\-Memb@{get\-Pot\-Memb}!Neuron@{Neuron}}
+\subsubsection[{get\-Pot\-Memb}]{\setlength{\rightskip}{0pt plus 5cm}double Neuron\-::get\-Pot\-Memb (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a8b4af30d823975f3b2ef3ae534f9ae5f}
+
+
+return the membrane potential 
+
+getter of Membrane potential
+
+\begin{DoxyReturn}{Returns}
+membrane potential 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a9c7aefda240dcf3ebdfc946c4e5925d7}{\index{Neuron@{Neuron}!get\-Spike@{get\-Spike}}
+\index{get\-Spike@{get\-Spike}!Neuron@{Neuron}}
+\subsubsection[{get\-Spike}]{\setlength{\rightskip}{0pt plus 5cm}bool Neuron\-::get\-Spike (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a9c7aefda240dcf3ebdfc946c4e5925d7}
+
+
+return the boolean telling if the neuron just spiked or not 
+
+getter of boolean spike
+
+\begin{DoxyReturn}{Returns}
+if a spike has been emited so that the neuron throw signals to its connections 
+\end{DoxyReturn}
+\hypertarget{classNeuron_ace97a76a0c9baaefb7985439ed4784b8}{\index{Neuron@{Neuron}!get\-Tback@{get\-Tback}}
+\index{get\-Tback@{get\-Tback}!Neuron@{Neuron}}
+\subsubsection[{get\-Tback}]{\setlength{\rightskip}{0pt plus 5cm}double Neuron\-::get\-Tback (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_ace97a76a0c9baaefb7985439ed4784b8}
+
+
+return the last element of the spike times 
+
+getter of time of last spike
+
+\begin{DoxyReturn}{Returns}
+time when last spike occured 
+\end{DoxyReturn}
+\hypertarget{classNeuron_ade02b2e51d19c01b2dbe032ecd8de8d1}{\index{Neuron@{Neuron}!get\-Test@{get\-Test}}
+\index{get\-Test@{get\-Test}!Neuron@{Neuron}}
+\subsubsection[{get\-Test}]{\setlength{\rightskip}{0pt plus 5cm}bool Neuron\-::get\-Test (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_ade02b2e51d19c01b2dbe032ecd8de8d1}
+
+
+return if we are testing something (true) or just using it in the main 
+
+getter of test
+
+\begin{DoxyReturn}{Returns}
+if we are testing or not 
+\end{DoxyReturn}
+\hypertarget{classNeuron_ae78f9ef057b2388e388d8c15343b5644}{\index{Neuron@{Neuron}!get\-Times@{get\-Times}}
+\index{get\-Times@{get\-Times}!Neuron@{Neuron}}
+\subsubsection[{get\-Times}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ double $>$ Neuron\-::get\-Times (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_ae78f9ef057b2388e388d8c15343b5644}
+
+
+return the times corresponding to the spikes of the neuron 
+
+getter of spike times
+
+\begin{DoxyReturn}{Returns}
+a vector which stores times when spikes occur 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a666ab405d0710b81a0bb5167269bb2b8}{\index{Neuron@{Neuron}!set\-Buffer\-Delay@{set\-Buffer\-Delay}}
+\index{set\-Buffer\-Delay@{set\-Buffer\-Delay}!Neuron@{Neuron}}
+\subsubsection[{set\-Buffer\-Delay}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Buffer\-Delay (
+\begin{DoxyParamCaption}
+\item[{int}]{place, }
+\item[{double}]{b}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a666ab405d0710b81a0bb5167269bb2b8}
+
+
+set a square of the buffer 
+
+setter of buffer\-\_\-delay to modify one of the squares (when a neuron is going to receive a signal)
+
+
+\begin{DoxyParams}{Parameters}
+{\em an} & int corresponding to the place where we're going to store the value b of the signal received \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_ad5f0c6229057cd544d3828f15ae527a7}{\index{Neuron@{Neuron}!set\-Connexions@{set\-Connexions}}
+\index{set\-Connexions@{set\-Connexions}!Neuron@{Neuron}}
+\subsubsection[{set\-Connexions}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Connexions (
+\begin{DoxyParamCaption}
+\item[{vector$<$ int $>$}]{v}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_ad5f0c6229057cd544d3828f15ae527a7}
+
+
+set the connections of the neuron 
+
+setter of connexions
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & vector of int corresponding to index of connections to other neurons \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_afe93c4d6b087e5d16220e0c0550fce01}{\index{Neuron@{Neuron}!set\-Curr\-Elec@{set\-Curr\-Elec}}
+\index{set\-Curr\-Elec@{set\-Curr\-Elec}!Neuron@{Neuron}}
+\subsubsection[{set\-Curr\-Elec}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Curr\-Elec (
+\begin{DoxyParamCaption}
+\item[{double}]{c}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_afe93c4d6b087e5d16220e0c0550fce01}
+
+
+set the electric current of the neuron 
+
+setter of electric current of neuron
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & double corresponding to an electric current \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_a5c88eb47ba197127e3a58c1a14269dff}{\index{Neuron@{Neuron}!set\-Efficient\-Connections@{set\-Efficient\-Connections}}
+\index{set\-Efficient\-Connections@{set\-Efficient\-Connections}!Neuron@{Neuron}}
+\subsubsection[{set\-Efficient\-Connections}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Efficient\-Connections (
+\begin{DoxyParamCaption}
+\item[{vector$<$ int $>$}]{v}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a5c88eb47ba197127e3a58c1a14269dff}
+
+
+setter of efficient connections (used when \hyperlink{classNetwork}{Network(n1,n2)}) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & vector that will be the new value of the efficient\-\_\-connections attribute \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_a47ee8e3d16f88abf78bee5a399f4a2be}{\index{Neuron@{Neuron}!set\-Exc\-Inhib@{set\-Exc\-Inhib}}
+\index{set\-Exc\-Inhib@{set\-Exc\-Inhib}!Neuron@{Neuron}}
+\subsubsection[{set\-Exc\-Inhib}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Exc\-Inhib (
+\begin{DoxyParamCaption}
+\item[{bool}]{b}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a47ee8e3d16f88abf78bee5a399f4a2be}
+
+
+set the boolean telling if the neuron is excitatory or inhibitory 
+
+setter of Exc\-Inhib to tell if the neuron is excitatory (true) or inhibitory (false), used during construction of neurons
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & double which corresponds to an electric current \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_a702042e0f4f193b6c74806ac911a9a4b}{\index{Neuron@{Neuron}!set\-Jconnect@{set\-Jconnect}}
+\index{set\-Jconnect@{set\-Jconnect}!Neuron@{Neuron}}
+\subsubsection[{set\-Jconnect}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Jconnect (
+\begin{DoxyParamCaption}
+\item[{double}]{j}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a702042e0f4f193b6c74806ac911a9a4b}
+
+
+set the amplitude of the signal the neuron is going to emit 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & double corresponding to this amplitude \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_afd39ff97179ef4f074653f024b69b610}{\index{Neuron@{Neuron}!set\-Nb\-Spikes@{set\-Nb\-Spikes}}
+\index{set\-Nb\-Spikes@{set\-Nb\-Spikes}!Neuron@{Neuron}}
+\subsubsection[{set\-Nb\-Spikes}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Nb\-Spikes (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_afd39ff97179ef4f074653f024b69b610}
+
+
+set the number of spikes the neuron lived 
+
+setter of nb\-Spikes
+
+
+\begin{DoxyParams}{Parameters}
+{\em an} & int n corresponding to a number of spikes \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_a39a86229bfac42c2e9ebbb91dd8655e8}{\index{Neuron@{Neuron}!set\-Pot\-Memb@{set\-Pot\-Memb}}
+\index{set\-Pot\-Memb@{set\-Pot\-Memb}!Neuron@{Neuron}}
+\subsubsection[{set\-Pot\-Memb}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Pot\-Memb (
+\begin{DoxyParamCaption}
+\item[{double}]{p}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a39a86229bfac42c2e9ebbb91dd8655e8}
+
+
+set the membrane potential 
+
+setter of Membrane Potential
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & double corresponding to a membrane potential p; \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_ab777b1ed93449f79293601ec2557e5ed}{\index{Neuron@{Neuron}!set\-Spike@{set\-Spike}}
+\index{set\-Spike@{set\-Spike}!Neuron@{Neuron}}
+\subsubsection[{set\-Spike}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Spike (
+\begin{DoxyParamCaption}
+\item[{bool}]{s}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_ab777b1ed93449f79293601ec2557e5ed}
+
+
+set the boolean telling if the neuron spiked or not 
+
+setter of Spike (if the neuron has spiked or not)
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & boolean to say if it spiked and so can throw signal (true=yes) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_a7509fbae2081d1d8188938ca51352169}{\index{Neuron@{Neuron}!set\-Test@{set\-Test}}
+\index{set\-Test@{set\-Test}!Neuron@{Neuron}}
+\subsubsection[{set\-Test}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Test (
+\begin{DoxyParamCaption}
+\item[{bool}]{b}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a7509fbae2081d1d8188938ca51352169}
+
+
+set if we are testing something or just using it in the main 
+
+setter of test
+
+
+\begin{DoxyParams}{Parameters}
+{\em boolean} & corresponding to if we are testing something (in unit\-Test) or not \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_a46444e31c0b2cda937344b0a41ff59da}{\index{Neuron@{Neuron}!set\-Times@{set\-Times}}
+\index{set\-Times@{set\-Times}!Neuron@{Neuron}}
+\subsubsection[{set\-Times}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::set\-Times (
+\begin{DoxyParamCaption}
+\item[{vector$<$ double $>$}]{t}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a46444e31c0b2cda937344b0a41ff59da}
+
+
+set the spike times 
+
+setter of vector of spike times named times
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & vector of double corresponding to times \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_a9d1f9ce3ee43c74eb0ff15b72256c417}{\index{Neuron@{Neuron}!spike\-\_\-emission@{spike\-\_\-emission}}
+\index{spike\-\_\-emission@{spike\-\_\-emission}!Neuron@{Neuron}}
+\subsubsection[{spike\-\_\-emission}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::spike\-\_\-emission (
+\begin{DoxyParamCaption}
+\item[{int}]{sim\-Time}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a9d1f9ce3ee43c74eb0ff15b72256c417}
+
+
+treats the membrane potential during a spike emission 
+
+the neuron spiked so my membrane potential turns back to 0, I add a spike time to the vector times, my time of refractory break turns back to t\-\_\-refract the neuron emits a spike (set\-Spike-\/$>$true) and I add 1 to my total number of spikes. \hypertarget{classNeuron_af4c3e28345913e29da87a372e817f3c8}{\index{Neuron@{Neuron}!update\-\_\-state@{update\-\_\-state}}
+\index{update\-\_\-state@{update\-\_\-state}!Neuron@{Neuron}}
+\subsubsection[{update\-\_\-state}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::update\-\_\-state (
+\begin{DoxyParamCaption}
+\item[{int}]{sim\-Time}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_af4c3e28345913e29da87a372e817f3c8}
+
+
+Update the neuron at each step of time. 
+
+update the neuron at each simulation time
+
+
+\begin{DoxyParams}{Parameters}
+{\em an} & int corresponding to the simulation time\\
+\hline
+\end{DoxyParams}
+I check if my neuron emits a spike (when membrane potential exceeds maximum membrane potential (Vthershold)). Then while it's refracting the membrane potential remains at 0. \hypertarget{classNeuron_a78ad401819336b210c9f0a1b7b676e53}{\index{Neuron@{Neuron}!V\-\_\-compute@{V\-\_\-compute}}
+\index{V\-\_\-compute@{V\-\_\-compute}!Neuron@{Neuron}}
+\subsubsection[{V\-\_\-compute}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::\-V\-\_\-compute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a78ad401819336b210c9f0a1b7b676e53}
+
+
+compute the membrane potential 
+
+it computes the membrane potential according to the specificity of neuron (if it's tested (has its own potential) or normal)
+
+If it can spike alone it increases its membrane potential according to an input electric current curr\-\_\-elec. I add the poisson generation that corresponds to the connections that comes from the external neurons (only if I'm not testing because it's difficult to test values with random generation) and the contents of the buffer (that corresponds to the reception of a signal received with delay D). 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+neuron.\-hpp\item 
+neuron.\-cpp\end{DoxyCompactItemize}

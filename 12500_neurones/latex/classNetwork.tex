@@ -1,0 +1,96 @@
+\hypertarget{classNetwork}{\section{Network Class Reference}
+\label{classNetwork}\index{Network@{Network}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNetwork_ae9a6eb526b5fe5cd8d5ae423d430f834}{Network} (\hyperlink{classNeuron}{Neuron} $\ast$n1, \hyperlink{classNeuron}{Neuron} $\ast$n2)
+\begin{DoxyCompactList}\small\item\em Constructor to simulate the connection between 2 neurons $\ast$/. \end{DoxyCompactList}\item 
+\hyperlink{classNetwork_a3cc2fb4f8fa4d507077e8da85ce5a1c8}{Network} ()
+\begin{DoxyCompactList}\small\item\em Constructor of a \hyperlink{classNetwork}{Network} whose number of neurons are in file \hyperlink{Constants_8hpp_source}{Constants.\-hpp}. \end{DoxyCompactList}\item 
+\hyperlink{classNetwork_a7a4e19cdb4bf0c7ecf82baa643831492}{$\sim$\-Network} ()
+\begin{DoxyCompactList}\small\item\em Destructor that free the pointers. \end{DoxyCompactList}\item 
+void \hyperlink{classNetwork_a295749c375dcb3c16ddbc5d5f52eba86}{update} (int sim\-Time)
+\begin{DoxyCompactList}\small\item\em update the \hyperlink{classNetwork}{Network} at each step of time (interactions between neurons) \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{classNeuron}{Neuron} $\ast$ $>$ \hyperlink{classNetwork_a8032b42ba5c9c445dcc0dd0a4916f633}{get\-Neurons} () const 
+\begin{DoxyCompactList}\small\item\em return the neurons of the \hyperlink{classNetwork}{Network} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classNetwork_ae9a6eb526b5fe5cd8d5ae423d430f834}{\index{Network@{Network}!Network@{Network}}
+\index{Network@{Network}!Network@{Network}}
+\subsubsection[{Network}]{\setlength{\rightskip}{0pt plus 5cm}Network\-::\-Network (
+\begin{DoxyParamCaption}
+\item[{{\bf Neuron} $\ast$}]{n1, }
+\item[{{\bf Neuron} $\ast$}]{n2}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_ae9a6eb526b5fe5cd8d5ae423d430f834}
+
+
+Constructor to simulate the connection between 2 neurons $\ast$/. 
+
+Constructor of the \hyperlink{classNetwork}{Network} composed of 2 neurons to observe the connection between them We create two excitatory neurons related by a connection from the first to the second. \hypertarget{classNetwork_a3cc2fb4f8fa4d507077e8da85ce5a1c8}{\index{Network@{Network}!Network@{Network}}
+\index{Network@{Network}!Network@{Network}}
+\subsubsection[{Network}]{\setlength{\rightskip}{0pt plus 5cm}Network\-::\-Network (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a3cc2fb4f8fa4d507077e8da85ce5a1c8}
+
+
+Constructor of a \hyperlink{classNetwork}{Network} whose number of neurons are in file \hyperlink{Constants_8hpp_source}{Constants.\-hpp}. 
+
+Constructor of the \hyperlink{classNetwork}{Network} We create a tab in wich we have excitatory and inhibitory neurons related by connections. \hypertarget{classNetwork_a7a4e19cdb4bf0c7ecf82baa643831492}{\index{Network@{Network}!$\sim$\-Network@{$\sim$\-Network}}
+\index{$\sim$\-Network@{$\sim$\-Network}!Network@{Network}}
+\subsubsection[{$\sim$\-Network}]{\setlength{\rightskip}{0pt plus 5cm}Network\-::$\sim$\-Network (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a7a4e19cdb4bf0c7ecf82baa643831492}
+
+
+Destructor that free the pointers. 
+
+Destructor of \hyperlink{classNetwork}{Network} (free the pointers) 
+
+\subsection{Member Function Documentation}
+\hypertarget{classNetwork_a8032b42ba5c9c445dcc0dd0a4916f633}{\index{Network@{Network}!get\-Neurons@{get\-Neurons}}
+\index{get\-Neurons@{get\-Neurons}!Network@{Network}}
+\subsubsection[{get\-Neurons}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Neuron} $\ast$ $>$ Network\-::get\-Neurons (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNetwork_a8032b42ba5c9c445dcc0dd0a4916f633}
+
+
+return the neurons of the \hyperlink{classNetwork}{Network} 
+
+getter of neurons of the \hyperlink{classNetwork}{Network}
+
+\begin{DoxyReturn}{Returns}
+a vector of pointers over the neurons of the \hyperlink{classNetwork}{Network} 
+\end{DoxyReturn}
+\hypertarget{classNetwork_a295749c375dcb3c16ddbc5d5f52eba86}{\index{Network@{Network}!update@{update}}
+\index{update@{update}!Network@{Network}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Network\-::update (
+\begin{DoxyParamCaption}
+\item[{int}]{sim\-Time}
+\end{DoxyParamCaption}
+)}}\label{classNetwork_a295749c375dcb3c16ddbc5d5f52eba86}
+
+
+update the \hyperlink{classNetwork}{Network} at each step of time (interactions between neurons) 
+
+update the \hyperlink{classNetwork}{Network} at each step of time
+
+
+\begin{DoxyParams}{Parameters}
+{\em an} & int corresponding to the simulation time\\
+\hline
+\end{DoxyParams}
+it updates each neuron of the \hyperlink{classNetwork}{Network} one at a time and send the signals if necessary (with method emit\-\_\-signal) 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Network.\-hpp\item 
+Network.\-cpp\end{DoxyCompactItemize}

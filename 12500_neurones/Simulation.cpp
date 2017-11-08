@@ -9,7 +9,7 @@
  * is started according to this one 
  * (ONE_NEURON,TWO_NEURONS,NETWORK).
  */ 
-Simulation::Simulation(int n)
+Simulation::Simulation()
 {
 	switch(choose_simulation())
 	{
@@ -30,18 +30,19 @@ Simulation::Simulation(int n)
  */ 
 void Simulation:: simulate_one_neuron()
 {
-	Neuron n;
-	n.setCurrElec(23.0);
+	Neuron n(true);
+	n.setCurrElec(1.01);
 	n.setTest(true);
 	
-	int t(tstart/dt);
-	while(t<tstop/dt)
+	int t(tstart);
+	while(t<tstop)
 	 {
-	  t++;
 	  n.update_state(t);
+	  t++;
+
 	 }
 	 cout<<"times when spikes occur:"<<endl;
-	 for(size_t i(1);i<n.getTimes().size();++i)
+	 for(size_t i(0);i<n.getTimes().size();++i)
 	 {cout<<"spikes n°"<<i<<" at: "<<n.getTimes()[i]<<endl;}
 }
 
@@ -50,9 +51,10 @@ void Simulation:: simulate_one_neuron()
  */
 void Simulation:: simulate_two_neurons()
 {
-	Network N(new Neuron,new Neuron);
-	int t(tstart/dt);
-	while(t<tstop/dt)
+	Network N(new Neuron(true), new Neuron(true));
+	
+	int t(tstart);
+	while(t<tstop)
 	 {
 	  N.update(t);
 	  ++t;
@@ -61,9 +63,10 @@ void Simulation:: simulate_two_neurons()
 	 for(size_t t(0);t<N.getNeurons().size();++t)
 	 {	 
        cout<<"times when spikes occured:"<<endl;
-	   for(size_t i(1);i<N.getNeurons()[t]->getTimes().size();++i)
+	   for(size_t i(0);i<N.getNeurons()[t]->getTimes().size();++i)
 	   {cout<<"spikes n°"<<i<<" du neurone "<<t+1<<" at: "<<N.getNeurons()[t]->getTimes()[i]<<endl;}
 	 }
+	 cout<<"#signaux emis "<<N.countEmittedSignals<<endl;
 }
 
 /*!
@@ -75,20 +78,27 @@ void Simulation:: simulate_two_neurons()
  */
 void Simulation:: simulate_Network()
 {   
-	Network N;
-	int t(tstart/dt);
-	while(t<tstop/dt)
+	Network N = Network();
+	int t(tstart);
+	
+	N.run();
+	
+	/*
+	while(t<tstop)
 	 {
-	  t++;
 	  N.update(t);
-	  cout<<"t="<<t<<endl;
+	  if(t%100==0)
+	  {cout << t/100<<"%" << endl;}
+	  t++;
 	 }
+	 */
 	 
 	 
-	 ofstream sortie_spikes("times_spike_neuron.txt");
+	 ofstream sortie_spikes;
+	 sortie_spikes.open("times_spike_neuron.txt");
 	 
 	 for(size_t i(0);i<N.getNeurons().size();++i)
-	 { for(size_t j(1); j<N.getNeurons()[i]->getTimes().size();++j)
+	 { for(size_t j(0); j<N.getNeurons()[i]->getTimes().size();++j)
 		 {
 	 sortie_spikes<<N.getNeurons()[i]->getTimes()[j]<<"\t"<<i<<endl;
 		 }
@@ -96,8 +106,7 @@ void Simulation:: simulate_Network()
 	 }
 	 	 sortie_spikes.close();   
 
-
-
+	 //for(int i(0); i<N.getNeurons()[0]->getConnexions().size();++i) {cout<<N.getNeurons()[0]->getConnexions()[i]<<endl;}
 }
 
 /*!

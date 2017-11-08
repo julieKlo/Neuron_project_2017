@@ -1,9 +1,5 @@
 #include "neuron.hpp"
-#include "neuron.hpp"
-#include "Constants.hpp"
 #include <fstream>
-#include <iomanip>
-#include <random>
 
 
 
@@ -15,15 +11,19 @@
 	  * potential (=0), it's excitatory by default, it hasn't spiked, and time=0 because it's in 
 	  * refractory phase and curr elec is 0 .
 	  */
-	 Neuron::Neuron(): nbConn(0), test(false), exc_inhib(true), pot_memb(0), curr_elec(0),  nb_spikes(0), times(vector<double>(1,0)), clock(0),  spike(false)
+	 Neuron::Neuron(bool ExcInh): pot_memb(0), nb_spikes(0), exc_inhib(ExcInh),
+		clock(0), curr_elec(0), nbConn(0), test(false)  
 	 {
-	   for(auto& d:buffer_delay) {d=0;}	 
-	   for(size_t t(0);t<nbNeuronExc+nbNeuronIn;++t) {connexions.push_back(0);} 
+	   buffer_delay = { 0 }; 
+	   times = {};
+	   connexions = {};
 	   
 	   if(exc_inhib){
 		   j_connection = Je;
 	   } 
-	   else {j_connection = Ji-0.1;} //j_connection takes the value according to the type of the neuron (exc or inh)
+	   else {
+		   j_connection = Ji;
+	   } //j_connection takes the value according to the type of the neuron (exc or inh)
 
 	   
 	}
@@ -35,75 +35,12 @@
 	 
 	 
  ////////////////Neuron evolution	 
- 
-	 /*!
-	  * @brief allows a neuron that spiked to send a signal to another neuron
-	  * @param the neuron that will receive the signal
-	  * 
-	  * when the neuron has spiked, it sends a signal to the neurons it's connected to
-	  * with an amplitude Je (if excitatory) and Ji (if inhibitory). 
-	  */
-	 void Neuron::emit_signal(Neuron* other)
-	 {
-		 if(getSpike())
-		 {
-			 other->setBufferDelay((clock+D)%(buffer_delay.size()),j_connection);													 			
-			
-		 }														     
-		 
-	 } 
-	 
-	 /*!
-	  * @brief fill the vector of connections of one neuron
-	  * @param an int to avoid the neuron to connect to itself
-	  * 
-	  * While we don't have as many excitatory (respectively inhibitory) connections as expected, 
-	  * we create randomly connections by generating a number belowing to the number of excitatory 
-	  * (respectively inhibitory) neurons.
-	  * In the square of the neuron corresponding to the random number we add 1 to show that 1 more connection
-	  * between the 2 neurons exists.
-	  * Then we sort this tab to optimize the signal transmission in the simulation (allows to cross the tab
-	  * faster by creating a new tab with positive connections).
-	  */
-	 void Neuron::connexions_fill(int num_neuron) 
-	 {											  
-	    static random_device rd; 
-        static mt19937 gen(rd());
-	    int i(0); //counts excitatory connections
-	    int j(0); //counts inhibitory connections
-	  
-	    while(i<conn_exc) 
-	     {
-		   static uniform_int_distribution<int> d(0,nbNeuronExc); 
-		   if(d(gen)!=num_neuron) //the neuron can't connect to itself
-		    {
-			 connexions[d(gen)]+=1;
-			 ++i;
-			 nbConn+=1;
-		    }
-	     }
-	    
-	    while(j<conn_inh)
-	      {
-		     static uniform_int_distribution<int> e(nbNeuronExc+1,nbNeuronExc+nbNeuronIn); //mes 10000 premiers neurones sont excitateurs
-		
-		     if(e(gen)!=num_neuron) //the neuron can't connect to itself
-		      {
-			   connexions[e(gen)]+=1;
-			   ++j;
-			   nbConn+=1;
-		      }
-	      }
-	      
-	      for (size_t t(0);t<connexions.size();++t) //sorts connections different from 0
-	      {
-			  if(connexions[t]>0)
-			  {
-				  for(int i(0);i<connexions[t];++i)
-				  {efficient_connections.push_back(t);}
-			  }
-		  }
-     }
+
+     
+     void Neuron::addConnexion(int i) {
+		 connexions.push_back(i);
+		 nbConn++;
+	 }
 	 
 	 /*!
 	  * @brief update the neuron at each simulation time
@@ -114,19 +51,27 @@
 	  * Then while it's refracting the membrane potential remains at 0.
 	  * 
 	  */
-	 void Neuron::update_state (int simTime)
+	 bool Neuron::update_state (int simTime)
 	 {
-		setSpike(false);
-		if(pot_memb>maxPot) {spike_emission(simTime);}
+		bool spiked = false;
+		
+		if (pot_memb >= maxPot) 
+		{
+			spike_emission(simTime);
+			spiked = true;
+		}
 		   
 		   if(isRefractory(simTime))
 		   {
 			   pot_memb=0.0;
 		   }
 			
-		   else {V_compute();}																				   			   
-			buffer_delay[clock%buffer_delay.size()]=0;
+		   else {V_compute();}	
+		   																			   			   
+			buffer_delay[clock%buffer_delay.size()] = 0.0;
 		   clock++;
+		   
+		   return spiked;
 	 }
 	 
 	 /*!
@@ -135,7 +80,7 @@
 	  */ 
 	 bool Neuron::isRefractory(int simTime) const
 	{
-		return (!((times.empty()) or (simTime > (times.back() + t_refract/dt))));
+		return (!times.empty() and (simTime < (times.back() + t_refract)));
 	}
 		 
 	/*!
@@ -147,9 +92,8 @@
 	 */
 	void Neuron::spike_emission(int simTime)
 	{
-	  pot_memb=0.0;
+	  pot_memb = 0.0;
 	  times.push_back(simTime);
-	  setSpike(true);
 	  setNbSpikes(getNbSpikes()+1);
 	} 
 		 
@@ -164,19 +108,19 @@
 	 */	 
 	 void Neuron::V_compute()
 	 {
+		 pot_memb = exp(-dt/tau)*pot_memb;
+		 
 		 if(getTest()) 
 			{
-		     pot_memb=exp(-dt/tau)*pot_memb+curr_elec/C*(1-exp(-dt/tau))+buffer_delay[clock%buffer_delay.size()]; //tau=r*c r=resistance
+		     pot_memb += curr_elec * tau/C * (1-exp(-dt/tau)); //tau=r*c r=resistance
 		    }
 		 
 		 else 
 		    {
-			  static random_device randomDevice;
-		      static mt19937 gen(randomDevice());
-		      static poisson_distribution<> poissonGen(NU_EXT);
-		      pot_memb+=(buffer_delay[clock%buffer_delay.size()]+ poissonGen(gen));
+		      pot_memb += Neuron::getPoissonNoise();
 		    }
-				
+		    
+		pot_memb += buffer_delay[clock % buffer_delay.size()];
 	 }
 		 	
 	 
@@ -204,11 +148,6 @@
 	  */
 	 double Neuron::getTback() const {return times.back();}
 	 /*!
-	  * @brief getter of boolean spike
-	  * @return if a spike has been emited so that the neuron throw signals to its connections
-	  */
-	 bool Neuron::getSpike() const {return spike;}
-	 /*!
 	  * @brief getter of curr_elec
 	  * @return the electric current the neuron suffers
 	  */
@@ -232,7 +171,9 @@
 	  * @brief getter of buffer_delay
 	  * @return  the array where are stored the signals the neuron is going to receive 
 	  */
-	 array<double,16> Neuron:: getBufferDelay() const {return buffer_delay;}
+	 array<double, BUFFER_SIZE> Neuron::getBufferDelay() const {
+		 return buffer_delay;
+	 }
 	 /*!
 	  * @brief getter of nb_Conn
 	  * @return the number of connexions the neuron has 
@@ -245,17 +186,14 @@
 	  */
 	 bool Neuron:: getTest() const {return test;}
 	 
-	 /*!
-	  * @brief getter of efficient connections (which are !=0)
-	  * @return a vector of index of neurons this is connected to
-	  */ 
-	 vector<int> Neuron::getEfficientConnections() const {return efficient_connections;}
 	 
 	 /*!
 	  * @brief getter of the amplitude of the signal the neuron is going to transmit
 	  * @return a double corresponding to this amplitude
 	  */ 
-	 double Neuron:: getJconnect() const {return j_connection;}
+	 double Neuron:: getJconnect() const {
+		 return exc_inhib ? Je : Ji;
+	}
 	 
 //////////////setters
 	  /*!
@@ -274,11 +212,6 @@
 	  */
 	 void Neuron::setTimes(vector<double> t) {times=t;}
 	 /*!
-	  * @brief setter of Spike (if the neuron has spiked or not)
-	  * @param  a boolean to say if it spiked and so can throw signal (true=yes)
-	  */
-	 void Neuron:: setSpike(bool s){spike=s;}
-	 /*!
 	  * @brief setter of electric current of neuron
 	  * @param  a double corresponding to an electric current
 	  */
@@ -287,7 +220,9 @@
 	  * @brief setter of ExcInhib to tell if the neuron is excitatory (true) or inhibitory (false), used during construction of neurons
 	  * @param   a double which corresponds to an electric current
 	  */
-	 void Neuron:: setExcInhib(bool b) {exc_inhib=b;}
+	 void Neuron:: setExcInhib(bool b) {exc_inhib=b;
+		 j_connection = b ? Je : Ji;
+		 }
 	 /*!
 	  * @brief setter of connexions 
 	  * @param  a vector of int corresponding to index of connections to other neurons
@@ -297,18 +232,15 @@
 	  * @brief setter of buffer_delay to modify one of the squares (when a neuron is going to receive a signal)
 	  * @param  an int corresponding to the place where we're going to store the value b of the signal received
 	  */
-	 void Neuron:: setBufferDelay(int place, double b) {buffer_delay[place]+=b;}
+	 void Neuron:: setBufferDelay(int place, double b) {
+		 buffer_delay[place] += b;
+	 }
 	 /*!
 	  * @brief setter of test
 	  * @param  boolean corresponding to if we are testing something (in unitTest) or not
 	  */
 	 void Neuron:: setTest(bool b) {test=b;}
-	 /*!
-	  * @brief setter of efficient connections (used when Network(n1,n2))
-	  * @param a vector that will be the new value of the efficient_connections attribute
-	  */
-	 void Neuron::setEfficientConnections(vector<int> v) {efficient_connections=v;}
-	 
+
 	 /*!
 	  * @brief set the amplitude of the signal the neuron is going to emit 
 	  * @param a double corresponding to this amplitude 

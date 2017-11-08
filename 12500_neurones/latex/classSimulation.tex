@@ -1,0 +1,92 @@
+\hypertarget{classSimulation}{\section{Simulation Class Reference}
+\label{classSimulation}\index{Simulation@{Simulation}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSimulation_a930144ecdcb42d15e2444554c4f60b3f}{Simulation} (int n)
+\begin{DoxyCompactList}\small\item\em Constructor of a simulation. \end{DoxyCompactList}\item 
+void \hyperlink{classSimulation_a48270844a14fb552bee8d992e75770ea}{simulate\-\_\-one\-\_\-neuron} ()
+\begin{DoxyCompactList}\small\item\em simulation of one neuron \end{DoxyCompactList}\item 
+void \hyperlink{classSimulation_aa6592e493217c02303339bf80cbda5eb}{simulate\-\_\-two\-\_\-neurons} ()
+\begin{DoxyCompactList}\small\item\em simulation os 2 neurons \end{DoxyCompactList}\item 
+void \hyperlink{classSimulation_a24255803814c198459a1cc3279657cf1}{simulate\-\_\-\-Network} ()
+\begin{DoxyCompactList}\small\item\em simulation of a complete \hyperlink{classNetwork}{Network} \end{DoxyCompactList}\item 
+S\-I\-M\-U\-L\-A\-T\-I\-O\-N\-\_\-\-T\-Y\-P\-E \hyperlink{classSimulation_a04733a805552b695cc5366ab1f988a37}{choose\-\_\-simulation} ()
+\begin{DoxyCompactList}\small\item\em allows to choose what we're going to simulate \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSimulation_a930144ecdcb42d15e2444554c4f60b3f}{\index{Simulation@{Simulation}!Simulation@{Simulation}}
+\index{Simulation@{Simulation}!Simulation@{Simulation}}
+\subsubsection[{Simulation}]{\setlength{\rightskip}{0pt plus 5cm}Simulation\-::\-Simulation (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}}\label{classSimulation_a930144ecdcb42d15e2444554c4f60b3f}
+
+
+Constructor of a simulation. 
+
+Consrtuct a simulatin according to n, an int chosen by the user on the terminal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n,an} & int (equivalent to a S\-I\-M\-U\-L\-A\-T\-I\-O\-N\-\_\-\-T\-Y\-P\-E) corresponding to the user's choice The user enters a string which is converted into a S\-I\-M\-U\-L\-A\-T\-I\-O\-N\-\_\-\-T\-Y\-P\-E and the simulation is started according to this one (O\-N\-E\-\_\-\-N\-E\-U\-R\-O\-N,T\-W\-O\-\_\-\-N\-E\-U\-R\-O\-N\-S,N\-E\-T\-W\-O\-R\-K). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSimulation_a04733a805552b695cc5366ab1f988a37}{\index{Simulation@{Simulation}!choose\-\_\-simulation@{choose\-\_\-simulation}}
+\index{choose\-\_\-simulation@{choose\-\_\-simulation}!Simulation@{Simulation}}
+\subsubsection[{choose\-\_\-simulation}]{\setlength{\rightskip}{0pt plus 5cm}S\-I\-M\-U\-L\-A\-T\-I\-O\-N\-\_\-\-T\-Y\-P\-E Simulation\-::choose\-\_\-simulation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSimulation_a04733a805552b695cc5366ab1f988a37}
+
+
+allows to choose what we're going to simulate 
+
+Allows the user to choose the simulation he wants to compute. \hypertarget{classSimulation_a24255803814c198459a1cc3279657cf1}{\index{Simulation@{Simulation}!simulate\-\_\-\-Network@{simulate\-\_\-\-Network}}
+\index{simulate\-\_\-\-Network@{simulate\-\_\-\-Network}!Simulation@{Simulation}}
+\subsubsection[{simulate\-\_\-\-Network}]{\setlength{\rightskip}{0pt plus 5cm}void Simulation\-::simulate\-\_\-\-Network (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSimulation_a24255803814c198459a1cc3279657cf1}
+
+
+simulation of a complete \hyperlink{classNetwork}{Network} 
+
+Creates a \hyperlink{classNetwork}{Network} whose dimensions are stored in \hyperlink{Constants_8hpp_source}{Constants.\-hpp} file and update it.
+
+Here we create a \hyperlink{classNetwork}{Network} with excitatory and inhibitory neurons which are interacting and we store the result of their interactions (time of their spikes) in a txt file by using an ofstream \hypertarget{classSimulation_a48270844a14fb552bee8d992e75770ea}{\index{Simulation@{Simulation}!simulate\-\_\-one\-\_\-neuron@{simulate\-\_\-one\-\_\-neuron}}
+\index{simulate\-\_\-one\-\_\-neuron@{simulate\-\_\-one\-\_\-neuron}!Simulation@{Simulation}}
+\subsubsection[{simulate\-\_\-one\-\_\-neuron}]{\setlength{\rightskip}{0pt plus 5cm}void Simulation\-::simulate\-\_\-one\-\_\-neuron (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSimulation_a48270844a14fb552bee8d992e75770ea}
+
+
+simulation of one neuron 
+
+simulate one neuron's behaviour It creates a \hyperlink{classNeuron}{Neuron} which generates its own current so that it increases its own potential and spikes regularly. \hypertarget{classSimulation_aa6592e493217c02303339bf80cbda5eb}{\index{Simulation@{Simulation}!simulate\-\_\-two\-\_\-neurons@{simulate\-\_\-two\-\_\-neurons}}
+\index{simulate\-\_\-two\-\_\-neurons@{simulate\-\_\-two\-\_\-neurons}!Simulation@{Simulation}}
+\subsubsection[{simulate\-\_\-two\-\_\-neurons}]{\setlength{\rightskip}{0pt plus 5cm}void Simulation\-::simulate\-\_\-two\-\_\-neurons (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classSimulation_aa6592e493217c02303339bf80cbda5eb}
+
+
+simulation os 2 neurons 
+
+simulates 2 neurons to see if the connection between them works 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Simulation.\-hpp\item 
+Simulation.\-cpp\end{DoxyCompactItemize}
