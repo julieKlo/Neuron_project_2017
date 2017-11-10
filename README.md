@@ -1,6 +1,8 @@
 Neurons Project SV 2017
 Julie Kloeckner SCIPER:269816
 
+USE FILES WHICH ARE IN 12500_neurones FILE
+
 I. DESCRIPTION
 
 The aim of the program is to simulate a Network composed of neurons connected one with each other. 
