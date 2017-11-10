@@ -25,6 +25,7 @@ class Network
 	//getter
 	vector<Neuron*> getNeurons() const; //!< return the neurons of the Network
 	
+	//Counter signals
 	int countEmittedSignals = 0; //!< to see how many signals have been emitted by the Network during the simulation
 
 	
