@@ -1,7 +1,3 @@
-# cppcourse-brunel
-This is a program that simulates Neurons. You need to use the files that are in 12500_neurones
-
-
 Neurons Project SV 2017
 Julie Kloeckner SCIPER:269816
 
@@ -29,11 +25,11 @@ Once the program started, it will ask for a simulation type. You only have to wr
 "TWO_NEURONS" if you want to simulate 2 neurons
 "NETWORK" if you want to simulate the whole Network
 
-WARNING: if you don't write one of those, the program won't work and you will have to start again.
+WARNING: if you don't write one of those, the program won't work and you will have to start again.This is to avoid aberrent results.
 
-In the file named "Constants.hpp" you can modify the parameters of the Network and the neuron (number of excitatory/inhibitory neurons and excitatory/inhibitory connections, simulation time, maximum membrane potential, amplitude of transmitted signal, tau, capacity, delay, extern capacity and extern potential).
+In the file named "Constants.hpp" you can modify the parameters of the Network and the neuron (number of excitatory/inhibitory neurons and excitatory/inhibitory connections, simulation time, maximum membrane potential, amplitude of transmitted signal, tau, capacity, delay, extern capacity and extern potential, ETA and G).
 
 If you start NETWORK, the spike times of all the neurons will be stored on a file named "times_spike_neuron.txt" which you could use to create a graph of the simulation on : 
 https://cs116-plot.antoinealb.net/
 or on:
-https://try.jupyter.org/
+https://try.jupyter.org/ by choosing in jupyter.py how to compute the graph
