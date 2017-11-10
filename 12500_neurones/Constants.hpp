@@ -7,8 +7,8 @@ using namespace std;
 //10t=1mS
 
 //Variable values 
-const double G=6; //!< proportion between Je and Ji
-const double ETA=4;
+const double G=5; //!< proportion between Je and Ji
+const double ETA=2;
 
 //Potential
 const double maxPot=20; //!< maximum potential the membrane can reach (Vthreshold)
