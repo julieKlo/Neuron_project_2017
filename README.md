@@ -34,4 +34,4 @@ In the file named "Constants.hpp" you can modify the parameters of the Network a
 If you start NETWORK, the spike times of all the neurons will be stored on a file named "times_spike_neuron.txt" which you could use to create a graph of the simulation on : 
 https://cs116-plot.antoinealb.net/
 or on:
-https://try.jupyter.org/ by choosing in jupyter.py how to compute the graph
+https://try.jupyter.org/
