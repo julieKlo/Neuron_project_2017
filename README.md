@@ -12,7 +12,7 @@ The inhibitory ones send a negative amplitude when they spike so that they decre
 
 II. COMPILATION
 
-To compile the project it is only necessary to be in the right folder and input "make" on the terminal. As we use CMake, it will compile all the program.
+To compile the project it is only necessary to be in the right folder and input "cmake ." and then "make" on the terminal. As we use CMake, it will compile all the program.
 
 To execute the program you write: "./Neurons" on the terminal
 
@@ -29,9 +29,11 @@ Once the program started, it will ask for a simulation type. You only have to wr
 
 WARNING: if you don't write one of those, the program won't work and you will have to start again.This is to avoid aberrent results.
 
-In the file named "Constants.hpp" you can modify the parameters of the Network and the neuron (number of excitatory/inhibitory neurons and excitatory/inhibitory connections, simulation time, maximum membrane potential, amplitude of transmitted signal, tau, capacity, delay, extern capacity and extern potential, ETA and G).
+In the file named "Constants.hpp" you can modify the parameters of the Network and the neuron (number of excitatory/inhibitory neurons and excitatory/inhibitory connections, simulation time, maximum membrane potential, amplitude of transmitted signal, tau, capacity, delay, extern capacity, extern potential, ETA and G).
 
 If you start NETWORK, the spike times of all the neurons will be stored on a file named "times_spike_neuron.txt" which you could use to create a graph of the simulation on : 
 https://cs116-plot.antoinealb.net/
 or on:
 https://try.jupyter.org/
+
+Now let's enjoy the program !
