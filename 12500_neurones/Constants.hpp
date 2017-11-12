@@ -12,14 +12,14 @@ const double ETA=2;
 
 //Potential
 const double maxPot=20; //!< maximum potential the membrane can reach (Vthreshold)
-const double Vext=0.01*ETA; //!< extern potential (warning: if changed, test for number of spikes doesn't work cause poisson generation varies)
+const double Vext=0.01*ETA; //!< extern potential 
 
 //Time
 const double tstart=0.0; //!< time when the simulation starts
 const double tstop=10000; //!< time when the simulation ends
 const double dt=0.1; //!< step of evolution (=h)
 const double tau=20;
-const double t_refract=20; //!< number of ms between 2 spikes
+const double t_refract=20; //!< number of steps between 2 spikes
 
 
 //Capacity
